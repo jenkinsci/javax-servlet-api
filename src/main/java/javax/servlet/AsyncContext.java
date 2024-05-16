@@ -101,7 +101,7 @@ public interface AsyncContext {
     /**
      * Checks if this AsyncContext was initialized with the original or application-wrapped request and response
      * objects.
-     * 
+     *
      * <p>
      * This information may be used by filters invoked in the <i>outbound</i> direction, after a request was put into
      * asynchronous mode, to determine whether any request and/or response wrappers that they added during their
@@ -117,7 +117,7 @@ public interface AsyncContext {
 
     /**
      * Dispatches the request and response objects of this AsyncContext to the servlet container.
-     * 
+     *
      * <p>
      * If the asynchronous cycle was started with {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
      * and the request passed is an instance of HttpServletRequest, then the dispatch is to the URI returned by
@@ -126,14 +126,14 @@ public interface AsyncContext {
      *
      * <p>
      * The following sequence illustrates how this will work:
-     * 
+     *
      * <pre>
      * {@code
      * // REQUEST dispatch to /url/A
      * AsyncContext ac = request.startAsync();
      * ...
      * ac.dispatch(); // ASYNC dispatch to /url/A
-     * 
+     *
      * // REQUEST to /url/A
      * // FORWARD dispatch to /url/B
      * request.getRequestDispatcher("/url/B").forward(request,response);
@@ -142,7 +142,7 @@ public interface AsyncContext {
      * ac = request.startAsync();
      * ...
      * ac.dispatch(); // ASYNC dispatch to /url/A
-     * 
+     *
      * // REQUEST to /url/A
      * // FORWARD dispatch to /url/B
      * request.getRequestDispatcher("/url/B").forward(request,response);
@@ -169,7 +169,7 @@ public interface AsyncContext {
      * Control over the request and response is delegated to the dispatch target, and the response will be closed when
      * the dispatch target has completed execution, unless {@link ServletRequest#startAsync()} or
      * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)} are called.
-     * 
+     *
      * <p>
      * Any errors or exceptions that may occur during the execution of this method must be caught and handled by the
      * container, as follows:
@@ -313,7 +313,7 @@ public interface AsyncContext {
      * {@link AsyncListener} is notified.
      *
      * @param listener the AsyncListener to be registered
-     * 
+     *
      * @throws IllegalStateException if this method is called after the container-initiated dispatch, during which one
      *                               of the {@link ServletRequest#startAsync} methods was called, has returned to the
      *                               container
@@ -363,7 +363,7 @@ public interface AsyncContext {
      * <p>
      * This method supports resource injection if the given <code>clazz</code> represents a Managed Bean. See the Jakarta EE
      * platform and CDI specifications for additional details about Managed Beans and resource injection.
-     * 
+     *
      * <p>
      * This method supports any annotations applicable to AsyncListener.
      *
@@ -386,7 +386,7 @@ public interface AsyncContext {
      * <p>
      * The timeout will expire if neither the {@link #complete} method nor any of the dispatch methods are called. A
      * timeout value of zero or less indicates no timeout.
-     * 
+     *
      * <p>
      * If {@link #setTimeout} is not called, then the container's default timeout, which is available via a call to
      * {@link #getTimeout}, will apply.
@@ -415,5 +415,4 @@ public interface AsyncContext {
      * @return the timeout in milliseconds
      */
     long getTimeout();
-
 }

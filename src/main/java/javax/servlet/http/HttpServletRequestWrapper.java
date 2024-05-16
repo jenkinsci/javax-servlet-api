@@ -32,7 +32,7 @@ import javax.servlet.ServletRequestWrapper;
  * <p>
  * This class implements the Wrapper or Decorator pattern. Methods default to calling through to the wrapped request
  * object.
- * 
+ *
  * @see javax.servlet.http.HttpServletRequest
  * @since Servlet 2.3
  */
@@ -327,7 +327,6 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     @Override
     public Part getPart(String name) throws IOException, ServletException {
         return this._getHttpServletRequest().getPart(name);
-
     }
 
     /**

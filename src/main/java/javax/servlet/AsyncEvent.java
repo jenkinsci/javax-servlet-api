@@ -126,5 +126,4 @@ public class AsyncEvent {
     public Throwable getThrowable() {
         return throwable;
     }
-
 }

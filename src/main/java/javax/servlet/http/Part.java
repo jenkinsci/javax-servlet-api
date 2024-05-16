@@ -24,14 +24,14 @@ import java.util.Collection;
 /**
  * <p>
  * This class represents a part or form item that was received within a <code>multipart/form-data</code> POST request.
- * 
+ *
  * @since Servlet 3.0
  */
 public interface Part {
 
     /**
      * Gets the content of this part as an <code>InputStream</code>
-     * 
+     *
      * @return The content of this part as an <code>InputStream</code>
      * @throws IOException If an error occurs in retrieving the content as an <code>InputStream</code>
      */
@@ -69,7 +69,7 @@ public interface Part {
 
     /**
      * A convenience method to write this uploaded item to disk.
-     * 
+     *
      * <p>
      * This method is not guaranteed to succeed if called more than once for the same part. This allows a particular
      * implementation to use, for example, file renaming, where possible, rather than copying all of the underlying
@@ -135,5 +135,4 @@ public interface Part {
      * @return a (possibly empty) <code>Collection</code> of the header names of this Part
      */
     Collection<String> getHeaderNames();
-
 }

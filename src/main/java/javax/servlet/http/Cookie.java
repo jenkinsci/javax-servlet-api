@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
  * Creates a cookie, a small amount of information sent by a servlet to a Web browser, saved by the browser, and later
  * sent back to the server. A cookie's value can uniquely identify a client, so cookies are commonly used for session
  * management.
- * 
+ *
  * <p>
  * A cookie has a name, a single value, and optional attributes such as a comment, path and domain qualifiers, a maximum
  * age, and a version number. Some Web browsers have bugs in how they handle the optional attributes, so use them
@@ -38,12 +38,12 @@ import java.util.ResourceBundle;
  * The servlet sends cookies to the browser by using the {@link HttpServletResponse#addCookie} method, which adds fields
  * to HTTP response headers to send cookies to the browser, one at a time. The browser is expected to support 20 cookies
  * for each Web server, 300 cookies total, and may limit cookie size to 4 KB each.
- * 
+ *
  * <p>
  * The browser returns cookies to the servlet by adding fields to HTTP request headers. Cookies can be retrieved from a
  * request by using the {@link HttpServletRequest#getCookies} method. Several cookies might have the same name but
  * different path attributes.
- * 
+ *
  * <p>
  * Cookies affect the caching of the Web pages that use them. HTTP 1.0 does not cache pages that use cookies created
  * with this class. This class does not support the cache control defined with HTTP 1.1.
@@ -126,11 +126,19 @@ public class Cookie implements Cloneable, Serializable {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(lStrings.getString("err.cookie_name_blank"));
         }
-        if (!isToken(name) || name.equalsIgnoreCase("Comment") || // rfc2019
-                name.equalsIgnoreCase("Discard") || // 2019++
-                name.equalsIgnoreCase("Domain") || name.equalsIgnoreCase("Expires") || // (old cookies)
-                name.equalsIgnoreCase("Max-Age") || // rfc2019
-                name.equalsIgnoreCase("Path") || name.equalsIgnoreCase("Secure") || name.equalsIgnoreCase("Version")
+        if (!isToken(name)
+                || name.equalsIgnoreCase("Comment")
+                || // rfc2019
+                name.equalsIgnoreCase("Discard")
+                || // 2019++
+                name.equalsIgnoreCase("Domain")
+                || name.equalsIgnoreCase("Expires")
+                || // (old cookies)
+                name.equalsIgnoreCase("Max-Age")
+                || // rfc2019
+                name.equalsIgnoreCase("Path")
+                || name.equalsIgnoreCase("Secure")
+                || name.equalsIgnoreCase("Version")
                 || name.startsWith("$")) {
             String errMsg = lStrings.getString("err.cookie_name_is_token");
             Object[] errArgs = new Object[1];
@@ -303,7 +311,7 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Assigns a new value to this Cookie.
-     * 
+     *
      * <p>
      * If you use a binary value, you may want to use BASE64 encoding.
      *
@@ -335,7 +343,7 @@ public class Cookie implements Cloneable, Serializable {
      * Returns the version of the protocol this cookie complies with. Version 1 complies with RFC 2109, and version 0
      * complies with the original cookie specification drafted by Netscape. Cookies provided by a browser use and
      * identify the browser's cookie version.
-     * 
+     *
      * @return 0 if the cookie complies with the original Netscape specification; 1 if the cookie complies with RFC 2109
      *
      * @see #setVersion
@@ -364,7 +372,7 @@ public class Cookie implements Cloneable, Serializable {
 
     /*
      * Tests a string and returns true if the string counts as a reserved token in the Java language.
-     * 
+     *
      * @param value the <code>String</code> to be tested
      *
      * @return <code>true</code> if the <code>String</code> is a reserved token; <code>false</code> otherwise

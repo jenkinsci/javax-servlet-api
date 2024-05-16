@@ -44,5 +44,4 @@ public interface WriteListener extends EventListener {
      * @param t the throwable to indicate why the write operation failed
      */
     void onError(final Throwable t);
-
 }

@@ -40,5 +40,4 @@ public interface FilterChain {
      * @throws ServletException if an exception has occurred that interferes with the filterChain's normal operation
      */
     void doFilter(ServletRequest request, ServletResponse response) throws IOException, ServletException;
-
 }

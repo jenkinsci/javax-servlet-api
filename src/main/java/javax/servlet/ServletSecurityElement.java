@@ -77,8 +77,8 @@ public class ServletSecurityElement extends HttpConstraintElement {
      *
      * @throws IllegalArgumentException if duplicate method names are detected
      */
-    public ServletSecurityElement(HttpConstraintElement constraint,
-            Collection<HttpMethodConstraintElement> methodConstraints) {
+    public ServletSecurityElement(
+            HttpConstraintElement constraint, Collection<HttpMethodConstraintElement> methodConstraints) {
         super(constraint.getEmptyRoleSemantic(), constraint.getTransportGuarantee(), constraint.getRolesAllowed());
         this.methodConstraints = (methodConstraints == null ? new HashSet<>() : methodConstraints);
         methodNames = checkMethodNames(this.methodConstraints);
@@ -92,11 +92,18 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * @throws IllegalArgumentException if duplicate method names are detected
      */
     public ServletSecurityElement(ServletSecurity annotation) {
-        super(annotation.value().value(), annotation.value().transportGuarantee(), annotation.value().rolesAllowed());
+        super(
+                annotation.value().value(),
+                annotation.value().transportGuarantee(),
+                annotation.value().rolesAllowed());
         this.methodConstraints = new HashSet<>();
         for (HttpMethodConstraint constraint : annotation.httpMethodConstraints()) {
-            this.methodConstraints.add(new HttpMethodConstraintElement(constraint.value(), new HttpConstraintElement(
-                    constraint.emptyRoleSemantic(), constraint.transportGuarantee(), constraint.rolesAllowed())));
+            this.methodConstraints.add(new HttpMethodConstraintElement(
+                    constraint.value(),
+                    new HttpConstraintElement(
+                            constraint.emptyRoleSemantic(),
+                            constraint.transportGuarantee(),
+                            constraint.rolesAllowed())));
         }
         methodNames = checkMethodNames(this.methodConstraints);
     }
@@ -123,7 +130,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * <code>ServletSecurityElement</code>.
      *
      *
-     * 
+     *
      * @return the collection String method names
      */
     public Collection<String> getMethodNames() {

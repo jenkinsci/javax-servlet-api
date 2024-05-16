@@ -43,18 +43,16 @@ public interface HttpSessionBindingListener extends EventListener {
      * @see #valueUnbound
      *
      */
-    default void valueBound(HttpSessionBindingEvent event) {
-    }
+    default void valueBound(HttpSessionBindingEvent event) {}
 
     /**
      *
      * Notifies the object that it is being unbound from a session and identifies the session.
      *
      * @param event the event that identifies the session
-     * 
+     *
      * @see #valueBound
      *
      */
-    default void valueUnbound(HttpSessionBindingEvent event) {
-    }
+    default void valueUnbound(HttpSessionBindingEvent event) {}
 }

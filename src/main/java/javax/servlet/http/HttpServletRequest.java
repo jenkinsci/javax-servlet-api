@@ -188,13 +188,13 @@ public interface HttpServletRequest extends ServletRequest {
      * invocation was obtained by a call to {@link javax.servlet.ServletContext#getNamedDispatcher}, the returned
      * {@code HttpServletMapping} is the one corresponding to the path for the mapping last applied to this request.
      * </p>
-     * 
+     *
      * <p>
      * The returned object is immutable. Servlet 4.0 compliant implementations must override this method.
      * </p>
-     * 
+     *
      * @return An instance of {@code HttpServletMapping} describing the manner in which the current request was invoked.
-     * 
+     *
      * @since 4.0
      */
     default HttpServletMapping getHttpServletMapping() {
@@ -225,7 +225,6 @@ public interface HttpServletRequest extends ServletRequest {
                         + getServletName() + ", mappingMatch=" + getMappingMatch() + "} HttpServletRequest {"
                         + HttpServletRequest.this.toString() + '}';
             }
-
         };
     }
 
@@ -640,7 +639,7 @@ public interface HttpServletRequest extends ServletRequest {
      * upgrade processing.
      *
      * @param              <T> The {@code Class}, which extends {@link HttpUpgradeHandler}, of the {@code handlerClass}.
-     * 
+     *
      * @param handlerClass The <code>HttpUpgradeHandler</code> class used for the upgrade.
      *
      * @return an instance of the <code>HttpUpgradeHandler</code>
@@ -662,7 +661,7 @@ public interface HttpServletRequest extends ServletRequest {
      * The returned map is not backed by the {@code HttpServletRequest} object, so changes in the returned map are not
      * reflected in the {@code HttpServletRequest} object, and vice-versa.
      * </p>
-     * 
+     *
      * <p>
      * {@link #isTrailerFieldsReady()} should be called first to determine if it is safe to call this method without
      * causing an exception.

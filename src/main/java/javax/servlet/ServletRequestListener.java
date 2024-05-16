@@ -47,8 +47,7 @@ public interface ServletRequestListener extends EventListener {
      * @param sre the ServletRequestEvent containing the ServletRequest and the ServletContext representing the web
      *            application
      */
-    default void requestDestroyed(ServletRequestEvent sre) {
-    }
+    default void requestDestroyed(ServletRequestEvent sre) {}
 
     /**
      * Receives notification that a ServletRequest is about to come into scope of the web application.
@@ -56,6 +55,5 @@ public interface ServletRequestListener extends EventListener {
      * @param sre the ServletRequestEvent containing the ServletRequest and the ServletContext representing the web
      *            application
      */
-    default void requestInitialized(ServletRequestEvent sre) {
-    }
+    default void requestInitialized(ServletRequestEvent sre) {}
 }

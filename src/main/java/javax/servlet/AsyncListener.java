@@ -30,7 +30,7 @@ public interface AsyncListener extends EventListener {
 
     /**
      * Notifies this AsyncListener that an asynchronous operation has been completed.
-     * 
+     *
      * <p>
      * The {@link AsyncContext} corresponding to the asynchronous operation that has been completed may be obtained by
      * calling {@link AsyncEvent#getAsyncContext getAsyncContext} on the given <code>event</code>.
@@ -49,7 +49,7 @@ public interface AsyncListener extends EventListener {
 
     /**
      * Notifies this AsyncListener that an asynchronous operation has timed out.
-     * 
+     *
      * <p>
      * The {@link AsyncContext} corresponding to the asynchronous operation that has timed out may be obtained by
      * calling {@link AsyncEvent#getAsyncContext getAsyncContext} on the given <code>event</code>.
@@ -68,11 +68,11 @@ public interface AsyncListener extends EventListener {
 
     /**
      * Notifies this AsyncListener that an asynchronous operation has failed to complete.
-     * 
+     *
      * <p>
      * The {@link AsyncContext} corresponding to the asynchronous operation that failed to complete may be obtained by
      * calling {@link AsyncEvent#getAsyncContext getAsyncContext} on the given <code>event</code>.
-     * 
+     *
      * <p>
      * In addition, if this AsyncListener had been registered via a call to
      * {@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}, the supplied ServletRequest and
@@ -92,7 +92,7 @@ public interface AsyncListener extends EventListener {
      * <p>
      * The {@link AsyncContext} corresponding to the asynchronous operation that is being reinitialized may be obtained
      * by calling {@link AsyncEvent#getAsyncContext getAsyncContext} on the given <code>event</code>.
-     * 
+     *
      * <p>
      * In addition, if this AsyncListener had been registered via a call to
      * {@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}, the supplied ServletRequest and
@@ -109,5 +109,4 @@ public interface AsyncListener extends EventListener {
      * @throws IOException if an I/O related error has occurred during the processing of the given AsyncEvent
      */
     void onStartAsync(AsyncEvent event) throws IOException;
-
 }

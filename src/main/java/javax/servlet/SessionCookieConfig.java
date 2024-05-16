@@ -113,7 +113,7 @@ public interface SessionCookieConfig {
      * <p>
      * As a side effect of this call, the session tracking cookies will be marked with a <code>Version</code> attribute
      * equal to <code>1</code>.
-     * 
+     *
      * @param comment the cookie comment to use
      *
      * @throws IllegalStateException if the <code>ServletContext</code> from which this <code>SessionCookieConfig</code> was

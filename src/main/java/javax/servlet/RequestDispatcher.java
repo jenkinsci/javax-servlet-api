@@ -52,7 +52,7 @@ public interface RequestDispatcher {
     /**
      * The name of the request attribute under which the original {@link javax.servlet.http.HttpServletMapping} is made
      * available to the target of a {@link #forward(ServletRequest,ServletResponse) forward}
-     * 
+     *
      * @since 4.0
      */
     String FORWARD_MAPPING = "javax.servlet.forward.mapping";

@@ -25,10 +25,10 @@ import java.lang.annotation.Target;
 
 /**
  * This annotation is used on a Servlet or Filter implementation class to specify an initialization parameter.
- * 
+ *
  * @since Servlet 3.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebInitParam {

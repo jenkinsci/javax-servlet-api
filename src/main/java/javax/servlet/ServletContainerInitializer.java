@@ -27,7 +27,7 @@ import java.util.Set;
  * Implementations of this interface may be annotated with {@link javax.servlet.annotation.HandlesTypes HandlesTypes},
  * in order to receive (at their {@link #onStartup} method) the Set of application classes that implement, extend, or
  * have been annotated with the class types specified by the annotation.
- * 
+ *
  * <p>
  * If an implementation of this interface does not use <code>HandlesTypes</code> annotation, or none of the application
  * classes match the ones specified by the annotation, the container must pass a <code>null</code> Set of classes to

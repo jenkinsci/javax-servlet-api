@@ -25,7 +25,7 @@ import java.io.IOException;
  * A filter is an object that performs filtering tasks on either the request to a resource (a servlet or static
  * content), or on the response from a resource, or both.
  * </p>
- * 
+ *
  * <p>
  * Filters perform filtering in the <code>doFilter</code> method. Every Filter has access to a FilterConfig object from
  * which it can obtain its initialization parameters, and a reference to the ServletContext which it can use, for
@@ -61,7 +61,7 @@ public interface Filter {
      * The servlet container calls the init method exactly once after instantiating the filter. The init method must
      * complete successfully before the filter is asked to do any filtering work.
      * </p>
-     * 
+     *
      * <p>
      * The web container cannot place the filter into service if the init method either
      * </p>
@@ -69,13 +69,12 @@ public interface Filter {
      * <li>Throws a ServletException
      * <li>Does not return within a time period defined by the web container
      * </ol>
-     * 
+     *
      * @param filterConfig a <code>FilterConfig</code> object containing the filter's configuration and initialization
      *                     parameters
      * @throws ServletException if an exception has occurred that interferes with the filter's normal operation
      */
-    default void init(FilterConfig filterConfig) throws ServletException {
-    }
+    default void init(FilterConfig filterConfig) throws ServletException {}
 
     /**
      * The <code>doFilter</code> method of the Filter is called by the container each time a request/response pair is
@@ -128,6 +127,5 @@ public interface Filter {
      * memory.
      * </p>
      */
-    default void destroy() {
-    }
+    default void destroy() {}
 }

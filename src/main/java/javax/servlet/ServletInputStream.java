@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 
+ *
  * Provides an input stream for reading binary data from a client request, including an efficient <code>readLine</code>
  * method for reading data one line at a time. With some protocols, such as HTTP POST and PUT, a
  * <code>ServletInputStream</code> object can be used to read data sent from the client.
@@ -47,8 +47,7 @@ public abstract class ServletInputStream extends InputStream {
      * Does nothing, because this is an abstract class.
      *
      */
-    protected ServletInputStream() {
-    }
+    protected ServletInputStream() {}
 
     /**
      *
@@ -123,7 +122,7 @@ public abstract class ServletInputStream extends InputStream {
      * @throws NullPointerException if readListener is null
      *
      * @since Servlet 3.1
-     * 
+     *
      */
     public abstract void setReadListener(ReadListener readListener);
 }
