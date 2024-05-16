@@ -19,7 +19,9 @@
 package javax.servlet.http;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequestWrapper;
 

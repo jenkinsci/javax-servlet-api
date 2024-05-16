@@ -18,11 +18,11 @@
 
 package javax.servlet.http;
 
-import javax.servlet.ServletInputStream;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
-import java.io.IOException;
+import javax.servlet.ServletInputStream;
 
 /**
  * @deprecated As of Java(tm) Servlet API 2.3. These methods were only useful with the default encoding and have been

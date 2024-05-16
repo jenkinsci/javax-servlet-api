@@ -19,11 +19,6 @@ package javax.servlet.http;
 
 import java.util.Set;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 /**
  * Build a request to be pushed.
  * 
