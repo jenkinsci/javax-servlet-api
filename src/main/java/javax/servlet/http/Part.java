@@ -17,8 +17,9 @@
 
 package javax.servlet.http;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
 
 /**
  * <p>
