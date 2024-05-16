@@ -29,6 +29,14 @@
     <spotbugs.skip>true</spotbugs.skip>
   </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
