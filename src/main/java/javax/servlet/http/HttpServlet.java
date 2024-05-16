@@ -373,8 +373,8 @@ public abstract class HttpServlet extends GenericServlet {
         boolean ALLOW_TRACE = true;
         boolean ALLOW_OPTIONS = true;
 
-        for (int i = 0; i < methods.length; i++) {
-            String methodName = methods[i].getName();
+        for (Method method : methods) {
+            String methodName = method.getName();
 
             if (methodName.equals("doGet")) {
                 ALLOW_GET = true;
