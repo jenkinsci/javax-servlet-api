@@ -50,7 +50,7 @@ public class UnavailableException extends ServletException {
     private int seconds; // unavailability estimate
 
     /**
-     * 
+     *
      * @deprecated As of Java Servlet API 2.2, use {@link #UnavailableException(String)} instead.
      *
      * @param servlet the <code>Servlet</code> instance that is unavailable
@@ -72,7 +72,7 @@ public class UnavailableException extends ServletException {
      *                negative, indicates that the servlet can't make an estimate
      *
      * @param servlet the <code>Servlet</code> that is unavailable
-     * 
+     *
      * @param msg     a <code>String</code> specifying the descriptive message, which can be written to a log file or
      *                displayed for the user.
      *
@@ -81,15 +81,16 @@ public class UnavailableException extends ServletException {
     public UnavailableException(int seconds, Servlet servlet, String msg) {
         super(msg);
         this.servlet = servlet;
-        if (seconds <= 0)
+        if (seconds <= 0) {
             this.seconds = -1;
-        else
+        } else {
             this.seconds = seconds;
+        }
         permanent = false;
     }
 
     /**
-     * 
+     *
      * Constructs a new exception with a descriptive message indicating that the servlet is permanently unavailable.
      *
      * @param msg a <code>String</code> specifying the descriptive message
@@ -104,7 +105,7 @@ public class UnavailableException extends ServletException {
     /**
      * Constructs a new exception with a descriptive message indicating that the servlet is temporarily unavailable and
      * giving an estimate of how long it will be unavailable.
-     * 
+     *
      * <p>
      * In some cases, the servlet cannot make an estimate. For example, the servlet might know that a server it needs is
      * not running, but not be able to report how long it will take to be restored to functionality. This can be
@@ -120,10 +121,11 @@ public class UnavailableException extends ServletException {
     public UnavailableException(String msg, int seconds) {
         super(msg);
 
-        if (seconds <= 0)
+        if (seconds <= 0) {
             this.seconds = -1;
-        else
+        } else {
             this.seconds = seconds;
+        }
 
         permanent = false;
     }
@@ -145,7 +147,7 @@ public class UnavailableException extends ServletException {
      * @deprecated As of Java Servlet API 2.2, with no replacement.
      *
      *             Returns the servlet that is reporting its unavailability.
-     * 
+     *
      * @return the <code>Servlet</code> object that is throwing the <code>UnavailableException</code>
      *
      */

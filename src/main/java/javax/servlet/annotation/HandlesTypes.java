@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  *
  * @since Servlet 3.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandlesTypes {
 
@@ -43,7 +43,7 @@ public @interface HandlesTypes {
      * must pass the <code>Set</code> of application classes that extend, implement, or have been annotated with the class
      * types listed by this annotation to the {@link javax.servlet.ServletContainerInitializer#onStartup} method of the
      * ServletContainerInitializer (if no matching classes are found, <code>null</code> must be passed instead)
-     * 
+     *
      * @return the classes in which {@link javax.servlet.ServletContainerInitializer ServletContainerInitializer} has
      *         expressed interest
      */

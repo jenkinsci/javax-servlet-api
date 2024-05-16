@@ -31,10 +31,10 @@ import java.lang.annotation.Target;
  * {@link javax.servlet.ServletRequestAttributeListener}, {@link javax.servlet.http.HttpSessionListener}, or
  * {@link javax.servlet.http.HttpSessionAttributeListener}, or {@link javax.servlet.http.HttpSessionIdListener}
  * interfaces.
- * 
+ *
  * @since Servlet 3.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebListener {

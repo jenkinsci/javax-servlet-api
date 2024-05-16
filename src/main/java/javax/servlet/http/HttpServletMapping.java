@@ -49,7 +49,7 @@ package javax.servlet.http;
  * The expected values of the properties for various incoming URI path values are as shown in this table. The
  * {@code servletName} column is omitted as its value is always {@code MyServlet}.
  * </p>
- * 
+ *
  * <table border="1">
  * <caption>Expected values of properties for various URI paths</caption>
  * <tr>
@@ -88,9 +88,9 @@ package javax.servlet.http;
  * <td>/path/*</td>
  * <td>PATH</td>
  * </tr>
- * 
+ *
  * </table>
- * 
+ *
  * @since 4.0
  */
 public interface HttpServletMapping {
@@ -105,9 +105,9 @@ public interface HttpServletMapping {
      * {@link #getMappingMatch} value is {@code EXTENSION} or {@code PATH}, this method must return the value that matched
      * the '*'. See the class javadoc for examples.
      * </p>
-     * 
+     *
      * @return the match.
-     * 
+     *
      * @since 4.0
      */
     String getMatchValue();
@@ -120,9 +120,9 @@ public interface HttpServletMapping {
      * EXTENSION}, this method must return the pattern, without any leading slash. Otherwise, this method returns the
      * pattern exactly as specified in the descriptor or Java configuration.
      * </p>
-     * 
+     *
      * @return the String representation for the {@code url-pattern} for this mapping.
-     * 
+     *
      * @since 4.0
      */
     String getPattern();
@@ -132,9 +132,9 @@ public interface HttpServletMapping {
      * Return the String representation for the {@code servlet-name} for this mapping. If the Servlet providing the response
      * is the default servlet, the return from this method is the name of the default servlet, which is container specific.
      * </p>
-     * 
+     *
      * @return the String representation for the {@code servlet-name} for this mapping.
-     * 
+     *
      * @since 4.0
      */
     String getServletName();
@@ -143,11 +143,10 @@ public interface HttpServletMapping {
      * <p>
      * Return the {@link MappingMatch} for this instance
      * </p>
-     * 
+     *
      * @return the {@code MappingMatch} for this instance.
-     * 
+     *
      * @since 4.0
      */
     MappingMatch getMappingMatch();
-
 }

@@ -48,8 +48,7 @@ public abstract class ServletOutputStream extends OutputStream {
      * Does nothing, because this is an abstract class.
      *
      */
-    protected ServletOutputStream() {
-    }
+    protected ServletOutputStream() {}
 
     /**
      * Writes a <code>String</code> to the client, without a carriage return-line feed (CRLF) character at the end.
@@ -61,8 +60,9 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void print(String s) throws IOException {
-        if (s == null)
+        if (s == null) {
             s = "null";
+        }
         int len = s.length();
         byte[] out = new byte[len];
         for (int i = 0; i < len; i++) {
@@ -83,7 +83,7 @@ public abstract class ServletOutputStream extends OutputStream {
             }
             out[i] = (byte) (0xff & c);
         }
-        write(out,0,len);
+        write(out, 0, len);
     }
 
     /**
@@ -300,5 +300,4 @@ public abstract class ServletOutputStream extends OutputStream {
      * @since Servlet 3.1
      */
     public abstract void setWriteListener(WriteListener writeListener);
-
 }

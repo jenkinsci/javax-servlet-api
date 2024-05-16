@@ -29,12 +29,12 @@ import java.lang.annotation.Target;
  * <p>
  * This annotation is processed by the container at deployment time, and the corresponding servlet made available at the
  * specified URL patterns.
- * 
+ *
  * @see javax.servlet.Servlet
  *
  * @since Servlet 3.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebServlet {
@@ -110,5 +110,4 @@ public @interface WebServlet {
      * @return the display name of the servlet
      */
     String displayName() default "";
-
 }

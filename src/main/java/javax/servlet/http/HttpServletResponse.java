@@ -33,7 +33,7 @@ import javax.servlet.ServletResponse;
  * The servlet container creates an <code>HttpServletResponse</code> object and passes it as an argument to the
  * servlet's service methods (<code>doGet</code>, <code>doPost</code>, etc).
  *
- * 
+ *
  * @author Various
  *
  * @see javax.servlet.ServletResponse
@@ -51,7 +51,7 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Returns a boolean indicating whether the named response header has already been set.
-     * 
+     *
      * @param name the header name
      * @return <code>true</code> if the named response header has already been set; <code>false</code> otherwise
      */
@@ -62,7 +62,7 @@ public interface HttpServletResponse extends ServletResponse {
      * The implementation of this method includes the logic to determine whether the session ID needs to be encoded in
      * the URL. For example, if the browser supports cookies, or session tracking is turned off, URL encoding is
      * unnecessary.
-     * 
+     *
      * <p>
      * For robust session tracking, all URLs emitted by a servlet should be run through this method. Otherwise, URL
      * rewriting cannot be used with browsers which do not support cookies.
@@ -82,7 +82,7 @@ public interface HttpServletResponse extends ServletResponse {
      * to be encoded in the URL. For example, if the browser supports cookies, or session tracking is turned off, URL
      * encoding is unnecessary. Because the rules for making this determination can differ from those used to decide
      * whether to encode a normal link, this method is separated from the <code>encodeURL</code> method.
-     * 
+     *
      * <p>
      * All URLs sent to the <code>HttpServletResponse.sendRedirect</code> method should be run through this method.
      * Otherwise, URL rewriting cannot be used with browsers which do not support cookies.
@@ -148,13 +148,13 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Sends an error response to the client using the specified status code and clears the buffer.
-     * 
+     *
      * The server will preserve cookies and may clear or update any headers needed to serve the error page as a valid
      * response.
      *
      * If an error-page declaration has been made for the web application corresponding to the status code passed in, it
      * will be served back the error page
-     * 
+     *
      * <p>
      * If the response has already been committed, this method throws an IllegalStateException. After using this method,
      * the response should be considered to be committed and should not be written to.
@@ -188,27 +188,27 @@ public interface HttpServletResponse extends ServletResponse {
     void sendRedirect(String location) throws IOException;
 
     /**
-     * 
+     *
      * Sets a response header with the given name and date-value. The date is specified in terms of milliseconds since
      * the epoch. If the header had already been set, the new value overwrites the previous one. The
      * <code>containsHeader</code> method can be used to test for the presence of a header before setting its value.
-     * 
+     *
      * @param name the name of the header to set
      * @param date the assigned date value
-     * 
+     *
      * @see #containsHeader
      * @see #addDateHeader
      */
     void setDateHeader(String name, long date);
 
     /**
-     * 
+     *
      * Adds a response header with the given name and date-value. The date is specified in terms of milliseconds since
      * the epoch. This method allows response headers to have multiple values.
-     * 
+     *
      * @param name the name of the header to set
      * @param date the additional date value
-     * 
+     *
      * @see #setDateHeader
      */
     void addDateHeader(String name, long date);
@@ -218,7 +218,7 @@ public interface HttpServletResponse extends ServletResponse {
      * Sets a response header with the given name and value. If the header had already been set, the new value
      * overwrites the previous one. The <code>containsHeader</code> method can be used to test for the presence of a
      * header before setting its value.
-     * 
+     *
      * @param name  the name of the header
      * @param value the header value If it contains octet string, it should be encoded according to RFC 2047
      *              (http://www.ietf.org/rfc/rfc2047.txt)
@@ -231,7 +231,7 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Adds a response header with the given name and value. This method allows response headers to have multiple
      * values.
-     * 
+     *
      * @param name  the name of the header
      * @param value the additional header value If it contains octet string, it should be encoded according to RFC 2047
      *              (http://www.ietf.org/rfc/rfc2047.txt)
@@ -295,7 +295,7 @@ public interface HttpServletResponse extends ServletResponse {
      *             <code>sendError(int, String)</code>.
      *
      *             Sets the status code and message for this response.
-     * 
+     *
      * @param sc the status code
      * @param sm the status message
      */
@@ -313,7 +313,7 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Gets the value of the response header with the given name.
-     * 
+     *
      * <p>
      * If a response header with the given name exists and contains multiple values, the value that was added first will
      * be returned.
@@ -396,14 +396,13 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @since Servlet 4.0
      */
-    default void setTrailerFields(Supplier<Map<String, String>> supplier) {
-    }
+    default void setTrailerFields(Supplier<Map<String, String>> supplier) {}
 
     /**
      * Gets the supplier of trailer headers.
      *
      * @return <code>Supplier</code> of trailer headers
-     * 
+     *
      * @since Servlet 4.0
      */
     default Supplier<Map<String, String>> getTrailerFields() {

@@ -30,19 +30,19 @@ import javax.servlet.DispatcherType;
  * <p>
  * This annotation is processed by the container at deployment time, and the corresponding filter applied to the
  * specified URL patterns, servlets, and dispatcher types.
- * 
+ *
  * @see javax.servlet.Filter
  *
  * @since Servlet 3.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebFilter {
 
     /**
      * The description of the filter
-     * 
+     *
      * @return the description of the filter
      */
     String description() default "";
@@ -108,7 +108,7 @@ public @interface WebFilter {
      *
      * @return the dispatcher types to which the filter applies
      */
-    DispatcherType[] dispatcherTypes() default { DispatcherType.REQUEST };
+    DispatcherType[] dispatcherTypes() default {DispatcherType.REQUEST};
 
     /**
      * Declares whether the filter supports asynchronous operation mode.
@@ -118,5 +118,4 @@ public @interface WebFilter {
      * @see javax.servlet.ServletRequest#startAsync( javax.servlet.ServletRequest,javax.servlet.ServletResponse)
      */
     boolean asyncSupported() default false;
-
 }

@@ -41,8 +41,7 @@ public interface HttpSessionAttributeListener extends EventListener {
      * @param event the HttpSessionBindingEvent containing the session and the name and value of the attribute that was
      *              added
      */
-    default void attributeAdded(HttpSessionBindingEvent event) {
-    }
+    default void attributeAdded(HttpSessionBindingEvent event) {}
 
     /**
      * Receives notification that an attribute has been removed from a session.
@@ -50,8 +49,7 @@ public interface HttpSessionAttributeListener extends EventListener {
      * @param event the HttpSessionBindingEvent containing the session and the name and value of the attribute that was
      *              removed
      */
-    default void attributeRemoved(HttpSessionBindingEvent event) {
-    }
+    default void attributeRemoved(HttpSessionBindingEvent event) {}
 
     /**
      * Receives notification that an attribute has been replaced in a session.
@@ -59,7 +57,5 @@ public interface HttpSessionAttributeListener extends EventListener {
      * @param event the HttpSessionBindingEvent containing the session and the name and (old) value of the attribute
      *              that was replaced
      */
-    default void attributeReplaced(HttpSessionBindingEvent event) {
-    }
-
+    default void attributeReplaced(HttpSessionBindingEvent event) {}
 }

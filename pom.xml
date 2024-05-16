@@ -27,6 +27,7 @@
     <gitHubRepo>jenkinsci/jenkins-servlet-api</gitHubRepo>
     <!-- TODO fix violations -->
     <spotbugs.skip>true</spotbugs.skip>
+    <spotless.check.skip>false</spotless.check.skip>
   </properties>
 
   <dependencies>

@@ -43,14 +43,12 @@ public interface HttpSessionListener extends EventListener {
      *
      * @param se the HttpSessionEvent containing the session
      */
-    default void sessionCreated(HttpSessionEvent se) {
-    }
+    default void sessionCreated(HttpSessionEvent se) {}
 
     /**
      * Receives notification that a session is about to be invalidated.
      *
      * @param se the HttpSessionEvent containing the session
      */
-    default void sessionDestroyed(HttpSessionEvent se) {
-    }
+    default void sessionDestroyed(HttpSessionEvent se) {}
 }

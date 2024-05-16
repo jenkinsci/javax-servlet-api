@@ -53,5 +53,4 @@ public interface ReadListener extends EventListener {
      * @param t the throwable to indicate why the read operation failed
      */
     void onError(Throwable t);
-
 }

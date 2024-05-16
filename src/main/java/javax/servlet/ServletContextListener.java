@@ -47,8 +47,7 @@ public interface ServletContextListener extends EventListener {
      *
      * @param sce the ServletContextEvent containing the ServletContext that is being initialized
      */
-    default void contextInitialized(ServletContextEvent sce) {
-    }
+    default void contextInitialized(ServletContextEvent sce) {}
 
     /**
      * Receives notification that the ServletContext is about to be shut down.
@@ -59,6 +58,5 @@ public interface ServletContextListener extends EventListener {
      *
      * @param sce the ServletContextEvent containing the ServletContext that is being destroyed
      */
-    default void contextDestroyed(ServletContextEvent sce) {
-    }
+    default void contextDestroyed(ServletContextEvent sce) {}
 }

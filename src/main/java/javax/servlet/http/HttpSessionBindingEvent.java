@@ -29,7 +29,7 @@ package javax.servlet.http;
  * <code>HttpSession.removeAttribute</code>.
  *
  * @author Various
- * 
+ *
  * @see HttpSession
  * @see HttpSessionBindingListener
  * @see HttpSessionAttributeListener

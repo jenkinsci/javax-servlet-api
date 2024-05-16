@@ -33,7 +33,7 @@ public interface FilterRegistration extends Registration {
      *
      * <p>
      * Filter mappings are matched in the order in which they were added.
-     * 
+     *
      * <p>
      * Depending on the value of the <code>isMatchAfter</code> parameter, the given filter mapping will be considered after
      * or before any <i>declared</i> filter mappings of the ServletContext from which this FilterRegistration was
@@ -53,8 +53,8 @@ public interface FilterRegistration extends Registration {
      * @throws IllegalStateException    if the ServletContext from which this FilterRegistration was obtained has
      *                                  already been initialized
      */
-    void addMappingForServletNames(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
-                                   String... servletNames);
+    void addMappingForServletNames(
+            EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter, String... servletNames);
 
     /**
      * Gets the currently available servlet name mappings of the Filter represented by this
@@ -75,7 +75,7 @@ public interface FilterRegistration extends Registration {
      *
      * <p>
      * Filter mappings are matched in the order in which they were added.
-     * 
+     *
      * <p>
      * Depending on the value of the <code>isMatchAfter</code> parameter, the given filter mapping will be considered after
      * or before any <i>declared</i> filter mappings of the ServletContext from which this FilterRegistration was
@@ -95,8 +95,7 @@ public interface FilterRegistration extends Registration {
      * @throws IllegalStateException    if the ServletContext from which this FilterRegistration was obtained has
      *                                  already been initialized
      */
-    void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
-                                  String... urlPatterns);
+    void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter, String... urlPatterns);
 
     /**
      * Gets the currently available URL pattern mappings of the Filter represented by this
@@ -115,6 +114,5 @@ public interface FilterRegistration extends Registration {
      * Interface through which a {@link Filter} registered via one of the <code>addFilter</code> methods on
      * {@link ServletContext} may be further configured.
      */
-    interface Dynamic extends FilterRegistration, Registration.Dynamic {
-    }
+    interface Dynamic extends FilterRegistration, Registration.Dynamic {}
 }

@@ -46,8 +46,7 @@ public interface ServletRequestAttributeListener extends EventListener {
      * @param srae the ServletRequestAttributeEvent containing the ServletRequest and the name and value of the
      *             attribute that was added
      */
-    default void attributeAdded(ServletRequestAttributeEvent srae) {
-    }
+    default void attributeAdded(ServletRequestAttributeEvent srae) {}
 
     /**
      * Receives notification that an attribute has been removed from the ServletRequest.
@@ -55,8 +54,7 @@ public interface ServletRequestAttributeListener extends EventListener {
      * @param srae the ServletRequestAttributeEvent containing the ServletRequest and the name and value of the
      *             attribute that was removed
      */
-    default void attributeRemoved(ServletRequestAttributeEvent srae) {
-    }
+    default void attributeRemoved(ServletRequestAttributeEvent srae) {}
 
     /**
      * Receives notification that an attribute has been replaced on the ServletRequest.
@@ -64,6 +62,5 @@ public interface ServletRequestAttributeListener extends EventListener {
      * @param srae the ServletRequestAttributeEvent containing the ServletRequest and the name and (old) value of the
      *             attribute that was replaced
      */
-    default void attributeReplaced(ServletRequestAttributeEvent srae) {
-    }
+    default void attributeReplaced(ServletRequestAttributeEvent srae) {}
 }

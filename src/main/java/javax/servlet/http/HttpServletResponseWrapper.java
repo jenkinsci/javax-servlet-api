@@ -25,11 +25,11 @@ import java.util.function.Supplier;
 import javax.servlet.ServletResponseWrapper;
 
 /**
- * 
+ *
  * Provides a convenient implementation of the HttpServletResponse interface that can be subclassed by developers
  * wishing to adapt the response from a Servlet. This class implements the Wrapper or Decorator pattern. Methods default
  * to calling through to the wrapped response object.
- * 
+ *
  * @author Various
  * @since Servlet 2.3
  *

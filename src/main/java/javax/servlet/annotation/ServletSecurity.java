@@ -41,14 +41,14 @@ public @interface ServletSecurity {
      * Defines the access semantic to be applied to an empty rolesAllowed array.
      */
     enum EmptyRoleSemantic {
-    /**
-     * access is to be permitted independent of authentication state and identity.
-     */
-    PERMIT,
-    /**
-     * access is to be denied independent of authentication state and identity.
-     */
-    DENY
+        /**
+         * access is to be permitted independent of authentication state and identity.
+         */
+        PERMIT,
+        /**
+         * access is to be denied independent of authentication state and identity.
+         */
+        DENY
     }
 
     /**

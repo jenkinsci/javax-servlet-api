@@ -44,7 +44,7 @@ public @interface MultipartConfig {
 
     /**
      * The maximum size allowed for uploaded files.
-     * 
+     *
      * <p>
      * The default is <code>-1L</code>, which means unlimited.
      *
@@ -54,7 +54,7 @@ public @interface MultipartConfig {
 
     /**
      * The maximum size allowed for <code>multipart/form-data</code> requests
-     * 
+     *
      * <p>
      * The default is <code>-1L</code>, which means unlimited.
      *
