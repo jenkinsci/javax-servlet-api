@@ -45,7 +45,7 @@ public class HttpConstraintElement {
      * @param semantic should be EmptyRoleSemantic.DENY
      */
     public HttpConstraintElement(EmptyRoleSemantic semantic) {
-        this(semantic, TransportGuarantee.NONE, new String[0]);
+        this(semantic, TransportGuarantee.NONE);
     }
 
     /**
