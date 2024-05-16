@@ -19,6 +19,7 @@
 package javax.servlet.http;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Hashtable;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
@@ -160,14 +161,8 @@ public class HttpUtils {
         // that the body should always be treated as FORM data.
         //
 
-        try {
-            String postedBody = new String(postedBytes, 0, len, "8859_1");
-            return parseQueryString(postedBody);
-        } catch (java.io.UnsupportedEncodingException e) {
-            // XXX function should accept an encoding parameter & throw this
-            // exception. Otherwise throw something expected.
-            throw new IllegalArgumentException(e.getMessage());
-        }
+        String postedBody = new String(postedBytes, 0, len, StandardCharsets.ISO_8859_1);
+        return parseQueryString(postedBody);
     }
 
     /*
