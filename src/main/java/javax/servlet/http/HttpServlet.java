@@ -715,7 +715,7 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     @Override
-    public void write(byte buf[], int offset, int len) throws IOException {
+    public void write(byte[] buf, int offset, int len) throws IOException {
         if (buf == null) {
             throw new NullPointerException(lStrings.getString("err.io.nullArray"));
         }
