@@ -74,7 +74,7 @@ public interface Filter {
      *                     parameters
      * @throws ServletException if an exception has occurred that interferes with the filter's normal operation
      */
-    default public void init(FilterConfig filterConfig) throws ServletException {
+    default void init(FilterConfig filterConfig) throws ServletException {
     }
 
     /**
@@ -108,7 +108,7 @@ public interface Filter {
      *
      * @see UnavailableException
      */
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+    void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException;
 
     /**
@@ -128,6 +128,6 @@ public interface Filter {
      * memory.
      * </p>
      */
-    default public void destroy() {
+    default void destroy() {
     }
 }

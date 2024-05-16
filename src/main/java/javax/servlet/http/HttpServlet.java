@@ -373,8 +373,8 @@ public abstract class HttpServlet extends GenericServlet {
         boolean ALLOW_TRACE = true;
         boolean ALLOW_OPTIONS = true;
 
-        for (int i = 0; i < methods.length; i++) {
-            String methodName = methods[i].getName();
+        for (Method method : methods) {
+            String methodName = method.getName();
 
             if (methodName.equals("doGet")) {
                 ALLOW_GET = true;
@@ -715,7 +715,7 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     @Override
-    public void write(byte buf[], int offset, int len) throws IOException {
+    public void write(byte[] buf, int offset, int len) throws IOException {
         if (buf == null) {
             throw new NullPointerException(lStrings.getString("err.io.nullArray"));
         }

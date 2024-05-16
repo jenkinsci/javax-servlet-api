@@ -44,7 +44,7 @@ public interface HttpSessionContext {
      * @return null in all cases
      */
     @Deprecated
-    public HttpSession getSession(String sessionId);
+    HttpSession getSession(String sessionId);
 
     /**
      *
@@ -55,5 +55,5 @@ public interface HttpSessionContext {
      *
      */
     @Deprecated
-    public Enumeration<String> getIds();
+    Enumeration<String> getIds();
 }

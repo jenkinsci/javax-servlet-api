@@ -56,7 +56,7 @@ public interface ServletContext {
      * The name of the <code>ServletContext</code> attribute which stores the private temporary directory (of type
      * <code>java.io.File</code>) provided by the servlet container for the <code>ServletContext</code>
      */
-    public static final String TEMPDIR = "javax.servlet.context.tempdir";
+    String TEMPDIR = "javax.servlet.context.tempdir";
 
     /**
      * The name of the <code>ServletContext</code> attribute whose value (of type
@@ -65,7 +65,7 @@ public interface ServletContext {
      * <code>&lt;absolute-ordering&gt;</code> without any <code>&lt;others/&gt;</code> is being used), or null if no
      * absolute or relative ordering has been specified
      */
-    public static final String ORDERED_LIBS = "javax.servlet.context.orderedLibs";
+    String ORDERED_LIBS = "javax.servlet.context.orderedLibs";
 
     /**
      * Returns the context path of the web application.
@@ -88,7 +88,7 @@ public interface ServletContext {
      *
      * @since Servlet 2.5
      */
-    public String getContextPath();
+    String getContextPath();
 
     /**
      * Returns a <code>ServletContext</code> object that corresponds to a specified URL on the server.
@@ -108,7 +108,7 @@ public interface ServletContext {
      *
      * @see RequestDispatcher
      */
-    public ServletContext getContext(String uripath);
+    ServletContext getContext(String uripath);
 
     /**
      * Returns the major version of Jakarta Servlet that this container supports. All implementations that
@@ -116,7 +116,7 @@ public interface ServletContext {
      *
      * @return 4
      */
-    public int getMajorVersion();
+    int getMajorVersion();
 
     /**
      * Returns the minor version of Jakarta Servlet that this container supports. All implementations that
@@ -124,7 +124,7 @@ public interface ServletContext {
      *
      * @return 0
      */
-    public int getMinorVersion();
+    int getMinorVersion();
 
     /**
      * Gets the major version of the Servlet specification that the application represented by this ServletContext is
@@ -145,7 +145,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public int getEffectiveMajorVersion();
+    int getEffectiveMajorVersion();
 
     /**
      * Gets the minor version of the Servlet specification that the application represented by this ServletContext is
@@ -166,7 +166,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public int getEffectiveMinorVersion();
+    int getEffectiveMinorVersion();
 
     /**
      * Returns the MIME type of the specified file, or <code>null</code> if the MIME type is not known. The MIME type is
@@ -177,7 +177,7 @@ public interface ServletContext {
      *
      * @return a <code>String</code> specifying the file's MIME type
      */
-    public String getMimeType(String file);
+    String getMimeType(String file);
 
     /**
      * Returns a directory-like listing of all the paths to resources within the web application whose longest sub-path
@@ -223,7 +223,7 @@ public interface ServletContext {
      *
      * @since Servlet 2.3
      */
-    public Set<String> getResourcePaths(String path);
+    Set<String> getResourcePaths(String path);
 
     /**
      * Returns a URL to the resource that is mapped to the given path.
@@ -268,7 +268,7 @@ public interface ServletContext {
      *
      * @exception MalformedURLException if the pathname is not given in the correct form
      */
-    public URL getResource(String path) throws MalformedURLException;
+    URL getResource(String path) throws MalformedURLException;
 
     /**
      * Returns the resource located at the named path as an <code>InputStream</code> object.
@@ -302,7 +302,7 @@ public interface ServletContext {
      * @return the <code>InputStream</code> returned to the servlet, or <code>null</code> if no resource exists at the
      *         specified path
      */
-    public InputStream getResourceAsStream(String path);
+    InputStream getResourceAsStream(String path);
 
     /**
      *
@@ -326,7 +326,7 @@ public interface ServletContext {
      * @see RequestDispatcher
      * @see ServletContext#getContext
      */
-    public RequestDispatcher getRequestDispatcher(String path);
+    RequestDispatcher getRequestDispatcher(String path);
 
     /**
      * Returns a {@link RequestDispatcher} object that acts as a wrapper for the named servlet.
@@ -348,7 +348,7 @@ public interface ServletContext {
      * @see ServletContext#getContext
      * @see ServletConfig#getServletName
      */
-    public RequestDispatcher getNamedDispatcher(String name);
+    RequestDispatcher getNamedDispatcher(String name);
 
     /**
      * @deprecated As of Java Servlet API 2.1, with no direct replacement.
@@ -367,7 +367,7 @@ public interface ServletContext {
      * @throws ServletException if an exception has occurred that interfaces with servlet's normal operation
      */
     @Deprecated
-    public Servlet getServlet(String name) throws ServletException;
+    Servlet getServlet(String name) throws ServletException;
 
     /**
      * @deprecated As of Java Servlet API 2.0, with no replacement.
@@ -381,7 +381,7 @@ public interface ServletContext {
      * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet}
      */
     @Deprecated
-    public Enumeration<Servlet> getServlets();
+    Enumeration<Servlet> getServlets();
 
     /**
      * @deprecated As of Java Servlet API 2.1, with no replacement.
@@ -395,7 +395,7 @@ public interface ServletContext {
      * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet} names
      */
     @Deprecated
-    public Enumeration<String> getServletNames();
+    Enumeration<String> getServletNames();
 
     /**
      *
@@ -404,7 +404,7 @@ public interface ServletContext {
      *
      * @param msg a <code>String</code> specifying the message to be written to the log file
      */
-    public void log(String msg);
+    void log(String msg);
 
     /**
      * @deprecated As of Java Servlet API 2.1, use {@link #log(String message, Throwable throwable)} instead.
@@ -417,7 +417,7 @@ public interface ServletContext {
      * @param msg       a <code>String</code> that describes the exception
      */
     @Deprecated
-    public void log(Exception exception, String msg);
+    void log(Exception exception, String msg);
 
     /**
      * Writes an explanatory message and a stack trace for a given <code>Throwable</code> exception to the servlet log
@@ -427,7 +427,7 @@ public interface ServletContext {
      *
      * @param throwable the <code>Throwable</code> error or exception
      */
-    public void log(String message, Throwable throwable);
+    void log(String message, Throwable throwable);
 
     /**
      * Gets the <i>real</i> path corresponding to the given <i>virtual</i> path.
@@ -455,7 +455,7 @@ public interface ServletContext {
      *
      * @return the <i>real</i> path, or <code>null</code> if the translation cannot be performed
      */
-    public String getRealPath(String path);
+    String getRealPath(String path);
 
     /**
      * Returns the name and version of the servlet container on which the servlet is running.
@@ -471,7 +471,7 @@ public interface ServletContext {
      *
      * @return a <code>String</code> containing at least the servlet container name and version number
      */
-    public String getServerInfo();
+    String getServerInfo();
 
     /**
      * Returns a <code>String</code> containing the value of the named context-wide initialization parameter, or
@@ -490,7 +490,7 @@ public interface ServletContext {
      *
      * @see ServletConfig#getInitParameter
      */
-    public String getInitParameter(String name);
+    String getInitParameter(String name);
 
     /**
      * Returns the names of the context's initialization parameters as an <code>Enumeration</code> of
@@ -502,7 +502,7 @@ public interface ServletContext {
      *
      * @see ServletConfig#getInitParameter
      */
-    public Enumeration<String> getInitParameterNames();
+    Enumeration<String> getInitParameterNames();
 
     /**
      * Sets the context initialization parameter with the given name and value on this ServletContext.
@@ -526,7 +526,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public boolean setInitParameter(String name, String value);
+    boolean setInitParameter(String name, String value);
 
     /**
      * Returns the servlet container attribute with the given name, or <code>null</code> if there is no attribute by
@@ -554,7 +554,7 @@ public interface ServletContext {
      * @throws NullPointerException if the argument {@code name} is {@code null}
      *
      */
-    public Object getAttribute(String name);
+    Object getAttribute(String name);
 
     /**
      * Returns an <code>Enumeration</code> containing the attribute names available within this ServletContext.
@@ -566,7 +566,7 @@ public interface ServletContext {
      *
      * @see #getAttribute
      */
-    public Enumeration<String> getAttributeNames();
+    Enumeration<String> getAttributeNames();
 
     /**
      * Binds an object to a given attribute name in this ServletContext. If the name specified is already used for an
@@ -587,7 +587,7 @@ public interface ServletContext {
      * @throws NullPointerException if the name parameter is {@code null}
      *
      */
-    public void setAttribute(String name, Object object);
+    void setAttribute(String name, Object object);
 
     /**
      * Removes the attribute with the given name from this ServletContext. After removal, subsequent calls to
@@ -598,7 +598,7 @@ public interface ServletContext {
      *
      * @param name a <code>String</code> specifying the name of the attribute to be removed
      */
-    public void removeAttribute(String name);
+    void removeAttribute(String name);
 
     /**
      * Returns the name of this web application corresponding to this ServletContext as specified in the deployment
@@ -608,7 +608,7 @@ public interface ServletContext {
      *
      * @since Servlet 2.3
      */
-    public String getServletContextName();
+    String getServletContextName();
 
     /**
      * Adds the servlet with the given name and class name to this servlet context.
@@ -651,7 +651,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public ServletRegistration.Dynamic addServlet(String servletName, String className);
+    ServletRegistration.Dynamic addServlet(String servletName, String className);
 
     /**
      * Registers the given servlet instance with this ServletContext under the given <code>servletName</code>.
@@ -685,7 +685,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public ServletRegistration.Dynamic addServlet(String servletName, Servlet servlet);
+    ServletRegistration.Dynamic addServlet(String servletName, Servlet servlet);
 
     /**
      * Adds the servlet with the given name and class type to this servlet context.
@@ -724,7 +724,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public ServletRegistration.Dynamic addServlet(String servletName, Class<? extends Servlet> servletClass);
+    ServletRegistration.Dynamic addServlet(String servletName, Class<? extends Servlet> servletClass);
 
     /**
      * Adds the servlet with the given jsp file to this servlet context.
@@ -755,7 +755,7 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
-    public ServletRegistration.Dynamic addJspFile(String servletName, String jspFile);
+    ServletRegistration.Dynamic addJspFile(String servletName, String jspFile);
 
     /**
      * Instantiates the given Servlet class.
@@ -789,7 +789,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public <T extends Servlet> T createServlet(Class<T> clazz) throws ServletException;
+    <T extends Servlet> T createServlet(Class<T> clazz) throws ServletException;
 
     /**
      * Gets the ServletRegistration corresponding to the servlet with the given <code>servletName</code>.
@@ -807,7 +807,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public ServletRegistration getServletRegistration(String servletName);
+    ServletRegistration getServletRegistration(String servletName);
 
     /**
      * Gets a (possibly empty) Map of the ServletRegistration objects (keyed by servlet name) corresponding to all
@@ -832,7 +832,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public Map<String, ? extends ServletRegistration> getServletRegistrations();
+    Map<String, ? extends ServletRegistration> getServletRegistrations();
 
     /**
      * Adds the filter with the given name and class name to this servlet context.
@@ -872,7 +872,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public FilterRegistration.Dynamic addFilter(String filterName, String className);
+    FilterRegistration.Dynamic addFilter(String filterName, String className);
 
     /**
      * Registers the given filter instance with this ServletContext under the given <code>filterName</code>.
@@ -905,7 +905,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public FilterRegistration.Dynamic addFilter(String filterName, Filter filter);
+    FilterRegistration.Dynamic addFilter(String filterName, Filter filter);
 
     /**
      * Adds the filter with the given name and class type to this servlet context.
@@ -941,7 +941,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public FilterRegistration.Dynamic addFilter(String filterName, Class<? extends Filter> filterClass);
+    FilterRegistration.Dynamic addFilter(String filterName, Class<? extends Filter> filterClass);
 
     /**
      * Instantiates the given Filter class.
@@ -972,7 +972,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public <T extends Filter> T createFilter(Class<T> clazz) throws ServletException;
+    <T extends Filter> T createFilter(Class<T> clazz) throws ServletException;
 
     /**
      * Gets the FilterRegistration corresponding to the filter with the given <code>filterName</code>.
@@ -989,7 +989,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public FilterRegistration getFilterRegistration(String filterName);
+    FilterRegistration getFilterRegistration(String filterName);
 
     /**
      * Gets a (possibly empty) Map of the FilterRegistration objects (keyed by filter name) corresponding to all filters
@@ -1014,7 +1014,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public Map<String, ? extends FilterRegistration> getFilterRegistrations();
+    Map<String, ? extends FilterRegistration> getFilterRegistrations();
 
     /**
      * Gets the {@link SessionCookieConfig} object through which various properties of the session tracking cookies
@@ -1034,7 +1034,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public SessionCookieConfig getSessionCookieConfig();
+    SessionCookieConfig getSessionCookieConfig();
 
     /**
      * Sets the session tracking modes that are to become effective for this <code>ServletContext</code>.
@@ -1062,7 +1062,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes);
+    void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes);
 
     /**
      * Gets the session tracking modes that are supported by default for this <code>ServletContext</code>.
@@ -1082,7 +1082,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public Set<SessionTrackingMode> getDefaultSessionTrackingModes();
+    Set<SessionTrackingMode> getDefaultSessionTrackingModes();
 
     /**
      * Gets the session tracking modes that are in effect for this <code>ServletContext</code>.
@@ -1106,7 +1106,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public Set<SessionTrackingMode> getEffectiveSessionTrackingModes();
+    Set<SessionTrackingMode> getEffectiveSessionTrackingModes();
 
     /**
      * Adds the listener with the given class name to this ServletContext.
@@ -1159,7 +1159,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public void addListener(String className);
+    void addListener(String className);
 
     /**
      * Adds the given listener to this ServletContext.
@@ -1203,7 +1203,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public <T extends EventListener> void addListener(T t);
+    <T extends EventListener> void addListener(T t);
 
     /**
      * Adds a listener of the given class type to this ServletContext.
@@ -1251,7 +1251,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public void addListener(Class<? extends EventListener> listenerClass);
+    void addListener(Class<? extends EventListener> listenerClass);
 
     /**
      * Instantiates the given EventListener class.
@@ -1295,7 +1295,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public <T extends EventListener> T createListener(Class<T> clazz) throws ServletException;
+    <T extends EventListener> T createListener(Class<T> clazz) throws ServletException;
 
     /**
      * Gets the <code>&lt;jsp-config&gt;</code> related configuration that was aggregated from the <code>web.xml</code>
@@ -1315,7 +1315,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public JspConfigDescriptor getJspConfigDescriptor();
+    JspConfigDescriptor getJspConfigDescriptor();
 
     /**
      * Gets the class loader of the web application represented by this ServletContext.
@@ -1338,7 +1338,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public ClassLoader getClassLoader();
+    ClassLoader getClassLoader();
 
     /**
      * Declares role names that are tested using <code>isUserInRole</code>.
@@ -1363,7 +1363,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    public void declareRoles(String... roleNames);
+    void declareRoles(String... roleNames);
 
     /**
      * Returns the configuration name of the logical host on which the ServletContext is deployed.
@@ -1384,7 +1384,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.1
      */
-    public String getVirtualServerName();
+    String getVirtualServerName();
 
     /**
      * Gets the session timeout in minutes that are supported by default for this <code>ServletContext</code>.
@@ -1399,7 +1399,7 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
-    public int getSessionTimeout();
+    int getSessionTimeout();
 
     /**
      * Sets the session timeout in minutes for this ServletContext.
@@ -1416,7 +1416,7 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
-    public void setSessionTimeout(int sessionTimeout);
+    void setSessionTimeout(int sessionTimeout);
 
     /**
      * Gets the request character encoding that are supported by default for this <code>ServletContext</code>. This method
@@ -1433,7 +1433,7 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
-    public String getRequestCharacterEncoding();
+    String getRequestCharacterEncoding();
 
     /**
      * Sets the request character encoding for this ServletContext.
@@ -1450,7 +1450,7 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
-    public void setRequestCharacterEncoding(String encoding);
+    void setRequestCharacterEncoding(String encoding);
 
     /**
      * Gets the response character encoding that are supported by default for this <code>ServletContext</code>. This method
@@ -1467,7 +1467,7 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
-    public String getResponseCharacterEncoding();
+    String getResponseCharacterEncoding();
 
     /**
      * Sets the response character encoding for this ServletContext.
@@ -1484,5 +1484,5 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
-    public void setResponseCharacterEncoding(String encoding);
+    void setResponseCharacterEncoding(String encoding);
 }

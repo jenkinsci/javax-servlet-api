@@ -69,7 +69,7 @@ public interface ServletResponse {
      *
      * @return a <code>String</code> specifying the name of the character encoding, for example, <code>UTF-8</code>
      */
-    public String getCharacterEncoding();
+    String getCharacterEncoding();
 
     /**
      * Returns the content type used for the MIME body sent in this response. The content type proper must have been
@@ -84,7 +84,7 @@ public interface ServletResponse {
      *
      * @since Servlet 2.4
      */
-    public String getContentType();
+    String getContentType();
 
     /**
      * Returns a {@link ServletOutputStream} suitable for writing binary data in the response. The servlet container
@@ -105,7 +105,7 @@ public interface ServletResponse {
      * @see #getWriter
      * @see #reset
      */
-    public ServletOutputStream getOutputStream() throws IOException;
+    ServletOutputStream getOutputStream() throws IOException;
 
     /**
      * Returns a <code>PrintWriter</code> object that can send character text to the client. The
@@ -133,7 +133,7 @@ public interface ServletResponse {
      * @see #setCharacterEncoding
      * @see #reset
      */
-    public PrintWriter getWriter() throws IOException;
+    PrintWriter getWriter() throws IOException;
 
     /**
      * Sets the character encoding (MIME charset) of the response being sent to the client, for example, to UTF-8. If
@@ -160,7 +160,7 @@ public interface ServletResponse {
      *
      * @since Servlet 2.4
      */
-    public void setCharacterEncoding(String charset);
+    void setCharacterEncoding(String charset);
 
     /**
      * Sets the length of the content body in the response In HTTP servlets, this method sets the HTTP Content-Length
@@ -169,7 +169,7 @@ public interface ServletResponse {
      * @param len an integer specifying the length of the content being returned to the client; sets the Content-Length
      *            header
      */
-    public void setContentLength(int len);
+    void setContentLength(int len);
 
     /**
      * Sets the length of the content body in the response In HTTP servlets, this method sets the HTTP Content-Length
@@ -180,7 +180,7 @@ public interface ServletResponse {
      *
      * @since Servlet 3.1
      */
-    public void setContentLengthLong(long len);
+    void setContentLengthLong(long len);
 
     /**
      * Sets the content type of the response being sent to the client, if the response has not been committed yet. The
@@ -204,7 +204,7 @@ public interface ServletResponse {
      * @see #getWriter
      *
      */
-    public void setContentType(String type);
+    void setContentType(String type);
 
     /**
      * Sets the preferred buffer size for the body of the response. The servlet container will use a buffer at least as
@@ -228,7 +228,7 @@ public interface ServletResponse {
      * @see #isCommitted
      * @see #reset
      */
-    public void setBufferSize(int size);
+    void setBufferSize(int size);
 
     /**
      * Returns the actual buffer size used for the response. If no buffering is used, this method returns 0.
@@ -240,7 +240,7 @@ public interface ServletResponse {
      * @see #isCommitted
      * @see #reset
      */
-    public int getBufferSize();
+    int getBufferSize();
 
     /**
      * Forces any content in the buffer to be written to the client. A call to this method automatically commits the
@@ -254,7 +254,7 @@ public interface ServletResponse {
      * @throws IOException if the act of flushing the buffer cannot be completed.
      *
      */
-    public void flushBuffer() throws IOException;
+    void flushBuffer() throws IOException;
 
     /**
      * Clears the content of the underlying buffer in the response without clearing headers or status code. If the
@@ -267,7 +267,7 @@ public interface ServletResponse {
      *
      * @since Servlet 2.3
      */
-    public void resetBuffer();
+    void resetBuffer();
 
     /**
      * Returns a boolean indicating if the response has been committed. A committed response has already had its status
@@ -281,7 +281,7 @@ public interface ServletResponse {
      * @see #reset
      *
      */
-    public boolean isCommitted();
+    boolean isCommitted();
 
     /**
      * Clears any data that exists in the buffer as well as the status code, headers. The state of calling
@@ -298,7 +298,7 @@ public interface ServletResponse {
      * @see #flushBuffer
      * @see #isCommitted
      */
-    public void reset();
+    void reset();
 
     /**
      * Sets the locale of the response, if the response has not been committed yet. It also sets the response's
@@ -325,7 +325,7 @@ public interface ServletResponse {
      * @see #setContentType
      * @see #setCharacterEncoding
      */
-    public void setLocale(Locale loc);
+    void setLocale(Locale loc);
 
     /**
      * Returns the locale specified for this response using the {@link #setLocale} method. Calls made to
@@ -336,6 +336,6 @@ public interface ServletResponse {
      * 
      * @see #setLocale
      */
-    public Locale getLocale();
+    Locale getLocale();
 
 }

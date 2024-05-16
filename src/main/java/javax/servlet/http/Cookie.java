@@ -123,7 +123,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setVersion
      */
     public Cookie(String name, String value) {
-        if (name == null || name.length() == 0) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(lStrings.getString("err.cookie_name_blank"));
         }
         if (!isToken(name) || name.equalsIgnoreCase("Comment") || // rfc2019

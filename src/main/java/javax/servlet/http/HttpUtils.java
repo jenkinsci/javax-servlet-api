@@ -19,6 +19,7 @@
 package javax.servlet.http;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Hashtable;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
@@ -63,7 +64,7 @@ public class HttpUtils {
      */
     public static Hashtable<String, String[]> parseQueryString(String s) {
 
-        String valArray[] = null;
+        String[] valArray = null;
 
         if (s == null) {
             throw new IllegalArgumentException();
@@ -81,13 +82,11 @@ public class HttpUtils {
                 throw new IllegalArgumentException();
             }
             String key = parseName(pair.substring(0, pos), sb);
-            String val = parseName(pair.substring(pos + 1, pair.length()), sb);
+            String val = parseName(pair.substring(pos + 1), sb);
             if (ht.containsKey(key)) {
-                String oldVals[] = ht.get(key);
+                String[] oldVals = ht.get(key);
                 valArray = new String[oldVals.length + 1];
-                for (int i = 0; i < oldVals.length; i++) {
-                    valArray[i] = oldVals[i];
-                }
+                System.arraycopy(oldVals, 0, valArray, 0, oldVals.length);
                 valArray[oldVals.length] = val;
             } else {
                 valArray = new String[1];
@@ -160,14 +159,8 @@ public class HttpUtils {
         // that the body should always be treated as FORM data.
         //
 
-        try {
-            String postedBody = new String(postedBytes, 0, len, "8859_1");
-            return parseQueryString(postedBody);
-        } catch (java.io.UnsupportedEncodingException e) {
-            // XXX function should accept an encoding parameter & throw this
-            // exception. Otherwise throw something expected.
-            throw new IllegalArgumentException(e.getMessage());
-        }
+        String postedBody = new String(postedBytes, 0, len, StandardCharsets.ISO_8859_1);
+        return parseQueryString(postedBody);
     }
 
     /*

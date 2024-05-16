@@ -110,7 +110,7 @@ public interface HttpServletMapping {
      * 
      * @since 4.0
      */
-    public String getMatchValue();
+    String getMatchValue();
 
     /**
      * <p>
@@ -125,7 +125,7 @@ public interface HttpServletMapping {
      * 
      * @since 4.0
      */
-    public String getPattern();
+    String getPattern();
 
     /**
      * <p>
@@ -137,7 +137,7 @@ public interface HttpServletMapping {
      * 
      * @since 4.0
      */
-    public String getServletName();
+    String getServletName();
 
     /**
      * <p>
@@ -148,6 +148,6 @@ public interface HttpServletMapping {
      * 
      * @since 4.0
      */
-    public MappingMatch getMappingMatch();
+    MappingMatch getMappingMatch();
 
 }
