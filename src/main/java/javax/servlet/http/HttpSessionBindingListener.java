@@ -43,7 +43,7 @@ public interface HttpSessionBindingListener extends EventListener {
      * @see #valueUnbound
      *
      */
-    default public void valueBound(HttpSessionBindingEvent event) {
+    default void valueBound(HttpSessionBindingEvent event) {
     }
 
     /**
@@ -55,6 +55,6 @@ public interface HttpSessionBindingListener extends EventListener {
      * @see #valueBound
      *
      */
-    default public void valueUnbound(HttpSessionBindingEvent event) {
+    default void valueUnbound(HttpSessionBindingEvent event) {
     }
 }

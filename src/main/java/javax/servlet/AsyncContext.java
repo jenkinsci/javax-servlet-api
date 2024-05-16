@@ -44,37 +44,37 @@ public interface AsyncContext {
      * The name of the request attribute under which the original request URI is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_REQUEST_URI = "javax.servlet.async.request_uri";
+    String ASYNC_REQUEST_URI = "javax.servlet.async.request_uri";
 
     /**
      * The name of the request attribute under which the original context path is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_CONTEXT_PATH = "javax.servlet.async.context_path";
+    String ASYNC_CONTEXT_PATH = "javax.servlet.async.context_path";
 
     /**
      * The name of the request attribute under which the original {@link javax.servlet.http.HttpServletMapping} is made
      * available to the target of a {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_MAPPING = "javax.servlet.async.mapping";
+    String ASYNC_MAPPING = "javax.servlet.async.mapping";
 
     /**
      * The name of the request attribute under which the original path info is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_PATH_INFO = "javax.servlet.async.path_info";
+    String ASYNC_PATH_INFO = "javax.servlet.async.path_info";
 
     /**
      * The name of the request attribute under which the original servlet path is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_SERVLET_PATH = "javax.servlet.async.servlet_path";
+    String ASYNC_SERVLET_PATH = "javax.servlet.async.servlet_path";
 
     /**
      * The name of the request attribute under which the original query string is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_QUERY_STRING = "javax.servlet.async.query_string";
+    String ASYNC_QUERY_STRING = "javax.servlet.async.query_string";
 
     /**
      * Gets the request that was used to initialize this AsyncContext by calling {@link ServletRequest#startAsync()} or
@@ -85,7 +85,7 @@ public interface AsyncContext {
      * @exception IllegalStateException if {@link #complete} or any of the {@link #dispatch} methods has been called in
      *                                  the asynchronous cycle
      */
-    public ServletRequest getRequest();
+    ServletRequest getRequest();
 
     /**
      * Gets the response that was used to initialize this AsyncContext by calling {@link ServletRequest#startAsync()} or
@@ -96,7 +96,7 @@ public interface AsyncContext {
      * @exception IllegalStateException if {@link #complete} or any of the {@link #dispatch} methods has been called in
      *                                  the asynchronous cycle
      */
-    public ServletResponse getResponse();
+    ServletResponse getResponse();
 
     /**
      * Checks if this AsyncContext was initialized with the original or application-wrapped request and response
@@ -113,7 +113,7 @@ public interface AsyncContext {
      *         {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}, and neither the ServletRequest nor
      *         ServletResponse arguments carried any application-provided wrappers; false otherwise
      */
-    public boolean hasOriginalRequestAndResponse();
+    boolean hasOriginalRequestAndResponse();
 
     /**
      * Dispatches the request and response objects of this AsyncContext to the servlet container.
@@ -197,7 +197,7 @@ public interface AsyncContext {
      *
      * @see ServletRequest#getDispatcherType
      */
-    public void dispatch();
+    void dispatch();
 
     /**
      * Dispatches the request and response objects of this AsyncContext to the given <code>path</code>.
@@ -232,7 +232,7 @@ public interface AsyncContext {
      *
      * @see ServletRequest#getDispatcherType
      */
-    public void dispatch(String path);
+    void dispatch(String path);
 
     /**
      * Dispatches the request and response objects of this AsyncContext to the given <code>path</code> scoped to the given
@@ -267,7 +267,7 @@ public interface AsyncContext {
      *
      * @see ServletRequest#getDispatcherType
      */
-    public void dispatch(ServletContext context, String path);
+    void dispatch(ServletContext context, String path);
 
     /**
      * Completes the asynchronous operation that was started on the request that was used to initialze this
@@ -285,7 +285,7 @@ public interface AsyncContext {
      * of {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after the container-initiated dispatch has
      * returned to the container.
      */
-    public void complete();
+    void complete();
 
     /**
      * Causes the container to dispatch a thread, possibly from a managed thread pool, to run the specified
@@ -293,7 +293,7 @@ public interface AsyncContext {
      *
      * @param run the asynchronous handler
      */
-    public void start(Runnable run);
+    void start(Runnable run);
 
     /**
      * Registers the given {@link AsyncListener} with the most recent asynchronous cycle that was started by a call to
@@ -318,7 +318,7 @@ public interface AsyncContext {
      *                               of the {@link ServletRequest#startAsync} methods was called, has returned to the
      *                               container
      */
-    public void addListener(AsyncListener listener);
+    void addListener(AsyncListener listener);
 
     /**
      * Registers the given {@link AsyncListener} with the most recent asynchronous cycle that was started by a call to
@@ -348,7 +348,7 @@ public interface AsyncContext {
      *                               of the {@link ServletRequest#startAsync} methods was called, has returned to the
      *                               container
      */
-    public void addListener(AsyncListener listener, ServletRequest servletRequest, ServletResponse servletResponse);
+    void addListener(AsyncListener listener, ServletRequest servletRequest, ServletResponse servletResponse);
 
     /**
      * Instantiates the given {@link AsyncListener} class.
@@ -374,7 +374,7 @@ public interface AsyncContext {
      *
      * @throws ServletException if the given <code>clazz</code> fails to be instantiated
      */
-    public <T extends AsyncListener> T createListener(Class<T> clazz) throws ServletException;
+    <T extends AsyncListener> T createListener(Class<T> clazz) throws ServletException;
 
     /**
      * Sets the timeout (in milliseconds) for this AsyncContext.
@@ -400,7 +400,7 @@ public interface AsyncContext {
      *                               of the {@link ServletRequest#startAsync} methods was called, has returned to the
      *                               container
      */
-    public void setTimeout(long timeout);
+    void setTimeout(long timeout);
 
     /**
      * Gets the timeout (in milliseconds) for this AsyncContext.
@@ -414,6 +414,6 @@ public interface AsyncContext {
      *
      * @return the timeout in milliseconds
      */
-    public long getTimeout();
+    long getTimeout();
 
 }

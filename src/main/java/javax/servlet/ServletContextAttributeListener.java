@@ -43,7 +43,7 @@ public interface ServletContextAttributeListener extends EventListener {
      * @param event the ServletContextAttributeEvent containing the ServletContext to which the attribute was added,
      *              along with the attribute name and value
      */
-    default public void attributeAdded(ServletContextAttributeEvent event) {
+    default void attributeAdded(ServletContextAttributeEvent event) {
     }
 
     /**
@@ -52,7 +52,7 @@ public interface ServletContextAttributeListener extends EventListener {
      * @param event the ServletContextAttributeEvent containing the ServletContext from which the attribute was removed,
      *              along with the attribute name and value
      */
-    default public void attributeRemoved(ServletContextAttributeEvent event) {
+    default void attributeRemoved(ServletContextAttributeEvent event) {
     }
 
     /**
@@ -61,6 +61,6 @@ public interface ServletContextAttributeListener extends EventListener {
      * @param event the ServletContextAttributeEvent containing the ServletContext in which the attribute was replaced,
      *              along with the attribute name and its old value
      */
-    default public void attributeReplaced(ServletContextAttributeEvent event) {
+    default void attributeReplaced(ServletContextAttributeEvent event) {
     }
 }

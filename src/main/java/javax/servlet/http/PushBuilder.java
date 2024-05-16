@@ -99,7 +99,7 @@ public interface PushBuilder {
      *
      * @return this builder.
      */
-    public PushBuilder method(String method);
+    PushBuilder method(String method);
 
     /**
      * Set the query string to be used for the push.
@@ -111,7 +111,7 @@ public interface PushBuilder {
      * @param queryString the query string to be used for the push.
      * @return this builder.
      */
-    public PushBuilder queryString(String queryString);
+    PushBuilder queryString(String queryString);
 
     /**
      * Set the SessionID to be used for the push. The session ID will be set in the same way it was on the associated
@@ -122,7 +122,7 @@ public interface PushBuilder {
      * @param sessionId the SessionID to be used for the push.
      * @return this builder.
      */
-    public PushBuilder sessionId(String sessionId);
+    PushBuilder sessionId(String sessionId);
 
     /**
      * <p>
@@ -134,7 +134,7 @@ public interface PushBuilder {
      * @param value The header value to set
      * @return this builder.
      */
-    public PushBuilder setHeader(String name, String value);
+    PushBuilder setHeader(String name, String value);
 
     /**
      * <p>
@@ -145,7 +145,7 @@ public interface PushBuilder {
      * @param value The header value to add
      * @return this builder.
      */
-    public PushBuilder addHeader(String name, String value);
+    PushBuilder addHeader(String name, String value);
 
     /**
      * <p>
@@ -155,7 +155,7 @@ public interface PushBuilder {
      * @param name The name of the header to remove
      * @return this builder.
      */
-    public PushBuilder removeHeader(String name);
+    PushBuilder removeHeader(String name);
 
     /**
      * Set the URI path to be used for the push. The path may start with "/" in which case it is treated as an absolute
@@ -167,7 +167,7 @@ public interface PushBuilder {
      * @param path the URI path to be used for the push, which may include a query string.
      * @return this builder.
      */
-    public PushBuilder path(String path);
+    PushBuilder path(String path);
 
     /**
      * Push a resource given the current state of the builder, the method must be non-blocking.
@@ -192,28 +192,28 @@ public interface PushBuilder {
      *                               instantiation or the last call to {@code push()} that did not throw an
      *                               IllegalStateException.
      */
-    public void push();
+    void push();
 
     /**
      * Return the method to be used for the push.
      *
      * @return the method to be used for the push.
      */
-    public String getMethod();
+    String getMethod();
 
     /**
      * Return the query string to be used for the push.
      *
      * @return the query string to be used for the push.
      */
-    public String getQueryString();
+    String getQueryString();
 
     /**
      * Return the SessionID to be used for the push.
      * 
      * @return the SessionID to be used for the push.
      */
-    public String getSessionId();
+    String getSessionId();
 
     /**
      * Return the set of header to be used for the push.
@@ -225,7 +225,7 @@ public interface PushBuilder {
      *
      * @return the set of header to be used for the push.
      */
-    public Set<String> getHeaderNames();
+    Set<String> getHeaderNames();
 
     /**
      * Return the header of the given name to be used for the push.
@@ -234,12 +234,12 @@ public interface PushBuilder {
      *
      * @return the header of the given name to be used for the push.
      */
-    public String getHeader(String name);
+    String getHeader(String name);
 
     /**
      * Return the URI path to be used for the push.
      *
      * @return the URI path to be used for the push.
      */
-    public String getPath();
+    String getPath();
 }

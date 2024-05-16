@@ -41,7 +41,7 @@ public interface SessionCookieConfig {
      * @throws IllegalStateException if the <code>ServletContext</code> from which this <code>SessionCookieConfig</code> was
      *                               acquired has already been initialized
      */
-    public void setName(String name);
+    void setName(String name);
 
     /**
      * Gets the name that will be assigned to any session tracking cookies created on behalf of the application
@@ -54,7 +54,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#getName()
      */
-    public String getName();
+    String getName();
 
     /**
      * Sets the domain name that will be assigned to any session tracking cookies created on behalf of the application
@@ -67,7 +67,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#setDomain(String)
      */
-    public void setDomain(String domain);
+    void setDomain(String domain);
 
     /**
      * Gets the domain name that will be assigned to any session tracking cookies created on behalf of the application
@@ -77,7 +77,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#getDomain()
      */
-    public String getDomain();
+    String getDomain();
 
     /**
      * Sets the path that will be assigned to any session tracking cookies created on behalf of the application
@@ -90,7 +90,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#setPath(String)
      */
-    public void setPath(String path);
+    void setPath(String path);
 
     /**
      * Gets the path that will be assigned to any session tracking cookies created on behalf of the application
@@ -104,7 +104,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#getPath()
      */
-    public String getPath();
+    String getPath();
 
     /**
      * Sets the comment that will be assigned to any session tracking cookies created on behalf of the application
@@ -122,7 +122,7 @@ public interface SessionCookieConfig {
      * @see javax.servlet.http.Cookie#setComment(String)
      * @see javax.servlet.http.Cookie#getVersion
      */
-    public void setComment(String comment);
+    void setComment(String comment);
 
     /**
      * Gets the comment that will be assigned to any session tracking cookies created on behalf of the application
@@ -132,7 +132,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#getComment()
      */
-    public String getComment();
+    String getComment();
 
     /**
      * Marks or unmarks the session tracking cookies created on behalf of the application represented by the
@@ -152,7 +152,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#setHttpOnly(boolean)
      */
-    public void setHttpOnly(boolean httpOnly);
+    void setHttpOnly(boolean httpOnly);
 
     /**
      * Checks if the session tracking cookies created on behalf of the application represented by the
@@ -165,7 +165,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#isHttpOnly()
      */
-    public boolean isHttpOnly();
+    boolean isHttpOnly();
 
     /**
      * Marks or unmarks the session tracking cookies created on behalf of the application represented by the
@@ -189,7 +189,7 @@ public interface SessionCookieConfig {
      * @see javax.servlet.http.Cookie#setSecure(boolean)
      * @see ServletRequest#isSecure()
      */
-    public void setSecure(boolean secure);
+    void setSecure(boolean secure);
 
     /**
      * Checks if the session tracking cookies created on behalf of the application represented by the
@@ -205,7 +205,7 @@ public interface SessionCookieConfig {
      * @see javax.servlet.http.Cookie#getSecure()
      * @see ServletRequest#isSecure()
      */
-    public boolean isSecure();
+    boolean isSecure();
 
     /**
      * Sets the lifetime (in seconds) for the session tracking cookies created on behalf of the application represented
@@ -220,7 +220,7 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#setMaxAge
      */
-    public void setMaxAge(int maxAge);
+    void setMaxAge(int maxAge);
 
     /**
      * Gets the lifetime (in seconds) of the session tracking cookies created on behalf of the application represented
@@ -235,5 +235,5 @@ public interface SessionCookieConfig {
      *
      * @see javax.servlet.http.Cookie#getMaxAge
      */
-    public int getMaxAge();
+    int getMaxAge();
 }
