@@ -17,6 +17,8 @@
 
 package javax.servlet.descriptor;
 
+import java.util.Objects;
+
 /**
  * This interface provides access to the <code>&lt;taglib&gt;</code> related configuration of a web application.
  *
@@ -41,4 +43,38 @@ public interface TaglibDescriptor {
      * @return the location of the tag library represented by this TaglibDescriptor
      */
     String getTaglibLocation();
+
+    default jakarta.servlet.descriptor.TaglibDescriptor toJakartaTaglibDescriptor() {
+        return new jakarta.servlet.descriptor.TaglibDescriptor() {
+            @Override
+            public String getTaglibURI() {
+                return TaglibDescriptor.this.getTaglibURI();
+            }
+
+            @Override
+            public String getTaglibLocation() {
+                return TaglibDescriptor.this.getTaglibLocation();
+            }
+        };
+    }
+
+    static TaglibDescriptor fromJakartaTaglibDescriptor(jakarta.servlet.descriptor.TaglibDescriptor from) {
+        Objects.requireNonNull(from);
+        return new TaglibDescriptor() {
+            @Override
+            public String getTaglibURI() {
+                return from.getTaglibURI();
+            }
+
+            @Override
+            public String getTaglibLocation() {
+                return from.getTaglibLocation();
+            }
+
+            @Override
+            public jakarta.servlet.descriptor.TaglibDescriptor toJakartaTaglibDescriptor() {
+                return from;
+            }
+        };
+    }
 }

@@ -18,6 +18,7 @@
 package javax.servlet;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -137,5 +138,168 @@ public interface Registration {
          *                               already been initialized
          */
         void setAsyncSupported(boolean isAsyncSupported);
+
+        default jakarta.servlet.Registration.Dynamic toJakartaRegistrationDynamic() {
+            return new jakarta.servlet.Registration.Dynamic() {
+                @Override
+                public String getName() {
+                    return Registration.Dynamic.this.getName();
+                }
+
+                @Override
+                public String getClassName() {
+                    return Registration.Dynamic.this.getClassName();
+                }
+
+                @Override
+                public boolean setInitParameter(String name, String value) {
+                    return Registration.Dynamic.this.setInitParameter(name, value);
+                }
+
+                @Override
+                public String getInitParameter(String name) {
+                    return Registration.Dynamic.this.getInitParameter(name);
+                }
+
+                @Override
+                public Set<String> setInitParameters(Map<String, String> initParameters) {
+                    return Registration.Dynamic.this.setInitParameters(initParameters);
+                }
+
+                @Override
+                public Map<String, String> getInitParameters() {
+                    return Registration.Dynamic.this.getInitParameters();
+                }
+
+                @Override
+                public void setAsyncSupported(boolean isAsyncSupported) {
+                    Registration.Dynamic.this.setAsyncSupported(isAsyncSupported);
+                }
+            };
+        }
+
+        static Registration.Dynamic fromJakartaRegistrationDynamic(jakarta.servlet.Registration.Dynamic from) {
+            Objects.requireNonNull(from);
+            return new Registration.Dynamic() {
+                @Override
+                public String getName() {
+                    return from.getName();
+                }
+
+                @Override
+                public String getClassName() {
+                    return from.getClassName();
+                }
+
+                @Override
+                public boolean setInitParameter(String name, String value) {
+                    return from.setInitParameter(name, value);
+                }
+
+                @Override
+                public String getInitParameter(String name) {
+                    return from.getInitParameter(name);
+                }
+
+                @Override
+                public Set<String> setInitParameters(Map<String, String> initParameters) {
+                    return from.setInitParameters(initParameters);
+                }
+
+                @Override
+                public Map<String, String> getInitParameters() {
+                    return from.getInitParameters();
+                }
+
+                @Override
+                public void setAsyncSupported(boolean isAsyncSupported) {
+                    from.setAsyncSupported(isAsyncSupported);
+                }
+
+                @Override
+                public jakarta.servlet.Registration toJakartaRegistration() {
+                    return from;
+                }
+
+                @Override
+                public jakarta.servlet.Registration.Dynamic toJakartaRegistrationDynamic() {
+                    return from;
+                }
+            };
+        }
+    }
+
+    default jakarta.servlet.Registration toJakartaRegistration() {
+        return new jakarta.servlet.Registration() {
+            @Override
+            public String getName() {
+                return Registration.this.getName();
+            }
+
+            @Override
+            public String getClassName() {
+                return Registration.this.getClassName();
+            }
+
+            @Override
+            public boolean setInitParameter(String name, String value) {
+                return Registration.this.setInitParameter(name, value);
+            }
+
+            @Override
+            public String getInitParameter(String name) {
+                return Registration.this.getInitParameter(name);
+            }
+
+            @Override
+            public Set<String> setInitParameters(Map<String, String> initParameters) {
+                return Registration.this.setInitParameters(initParameters);
+            }
+
+            @Override
+            public Map<String, String> getInitParameters() {
+                return Registration.this.getInitParameters();
+            }
+        };
+    }
+
+    static Registration fromJakartaRegistration(jakarta.servlet.Registration from) {
+        Objects.requireNonNull(from);
+        return new Registration() {
+            @Override
+            public String getName() {
+                return from.getName();
+            }
+
+            @Override
+            public String getClassName() {
+                return from.getClassName();
+            }
+
+            @Override
+            public boolean setInitParameter(String name, String value) {
+                return from.setInitParameter(name, value);
+            }
+
+            @Override
+            public String getInitParameter(String name) {
+                return from.getInitParameter(name);
+            }
+
+            @Override
+            public Set<String> setInitParameters(Map<String, String> initParameters) {
+                return from.setInitParameters(initParameters);
+            }
+
+            @Override
+            public Map<String, String> getInitParameters() {
+                return from.getInitParameters();
+            }
+
+            @Override
+            public jakarta.servlet.Registration toJakartaRegistration() {
+                return from;
+            }
+        };
     }
 }

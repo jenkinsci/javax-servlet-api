@@ -21,6 +21,7 @@ package javax.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Defines an object to assist a servlet in sending a response to the client. The servlet container creates a
@@ -337,4 +338,178 @@ public interface ServletResponse {
      * @see #setLocale
      */
     Locale getLocale();
+
+    default jakarta.servlet.ServletResponse toJakartaServletResponse() {
+        return new jakarta.servlet.ServletResponse() {
+            @Override
+            public String getCharacterEncoding() {
+                return ServletResponse.this.getCharacterEncoding();
+            }
+
+            @Override
+            public String getContentType() {
+                return ServletResponse.this.getContentType();
+            }
+
+            @Override
+            public jakarta.servlet.ServletOutputStream getOutputStream() throws IOException {
+                return ServletResponse.this.getOutputStream().toJakartaServletOutputStream();
+            }
+
+            @Override
+            public PrintWriter getWriter() throws IOException {
+                return ServletResponse.this.getWriter();
+            }
+
+            @Override
+            public void setCharacterEncoding(String charset) {
+                ServletResponse.this.setCharacterEncoding(charset);
+            }
+
+            @Override
+            public void setContentLength(int len) {
+                ServletResponse.this.setContentLength(len);
+            }
+
+            @Override
+            public void setContentLengthLong(long len) {
+                ServletResponse.this.setContentLengthLong(len);
+            }
+
+            @Override
+            public void setContentType(String type) {
+                ServletResponse.this.setContentType(type);
+            }
+
+            @Override
+            public void setBufferSize(int size) {
+                ServletResponse.this.setBufferSize(size);
+            }
+
+            @Override
+            public int getBufferSize() {
+                return ServletResponse.this.getBufferSize();
+            }
+
+            @Override
+            public void flushBuffer() throws IOException {
+                ServletResponse.this.flushBuffer();
+            }
+
+            @Override
+            public void resetBuffer() {
+                ServletResponse.this.resetBuffer();
+            }
+
+            @Override
+            public boolean isCommitted() {
+                return ServletResponse.this.isCommitted();
+            }
+
+            @Override
+            public void reset() {
+                ServletResponse.this.reset();
+            }
+
+            @Override
+            public void setLocale(Locale loc) {
+                ServletResponse.this.setLocale(loc);
+            }
+
+            @Override
+            public Locale getLocale() {
+                return ServletResponse.this.getLocale();
+            }
+        };
+    }
+
+    static ServletResponse fromJakartaServletResponse(jakarta.servlet.ServletResponse from) {
+        Objects.requireNonNull(from);
+        return new ServletResponse() {
+            @Override
+            public String getCharacterEncoding() {
+                return from.getCharacterEncoding();
+            }
+
+            @Override
+            public String getContentType() {
+                return from.getContentType();
+            }
+
+            @Override
+            public ServletOutputStream getOutputStream() throws IOException {
+                return ServletOutputStream.fromJakartaServletOutputStream(from.getOutputStream());
+            }
+
+            @Override
+            public PrintWriter getWriter() throws IOException {
+                return from.getWriter();
+            }
+
+            @Override
+            public void setCharacterEncoding(String charset) {
+                from.setCharacterEncoding(charset);
+            }
+
+            @Override
+            public void setContentLength(int len) {
+                from.setContentLength(len);
+            }
+
+            @Override
+            public void setContentLengthLong(long len) {
+                from.setContentLengthLong(len);
+            }
+
+            @Override
+            public void setContentType(String type) {
+                from.setContentType(type);
+            }
+
+            @Override
+            public void setBufferSize(int size) {
+                from.setBufferSize(size);
+            }
+
+            @Override
+            public int getBufferSize() {
+                return from.getBufferSize();
+            }
+
+            @Override
+            public void flushBuffer() throws IOException {
+                from.flushBuffer();
+            }
+
+            @Override
+            public void resetBuffer() {
+                from.resetBuffer();
+            }
+
+            @Override
+            public boolean isCommitted() {
+                return from.isCommitted();
+            }
+
+            @Override
+            public void reset() {
+                from.reset();
+            }
+
+            @Override
+            public void setLocale(Locale loc) {
+                from.setLocale(loc);
+            }
+
+            @Override
+            public Locale getLocale() {
+                return from.getLocale();
+            }
+
+            @Override
+            public jakarta.servlet.ServletResponse toJakartaServletResponse() {
+                return from;
+            }
+        };
+    }
 }

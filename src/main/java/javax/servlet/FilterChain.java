@@ -19,6 +19,9 @@
 package javax.servlet;
 
 import java.io.IOException;
+import java.util.Objects;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * A FilterChain is an object provided by the servlet container to the developer giving a view into the invocation chain
@@ -40,4 +43,58 @@ public interface FilterChain {
      * @throws ServletException if an exception has occurred that interferes with the filterChain's normal operation
      */
     void doFilter(ServletRequest request, ServletResponse response) throws IOException, ServletException;
+
+    default jakarta.servlet.FilterChain toJakartaFilterChain() {
+        return new jakarta.servlet.FilterChain() {
+            @Override
+            public void doFilter(jakarta.servlet.ServletRequest request, jakarta.servlet.ServletResponse response)
+                    throws IOException, jakarta.servlet.ServletException {
+                try {
+                    if (request instanceof jakarta.servlet.http.HttpServletRequest
+                            && response instanceof jakarta.servlet.http.HttpServletResponse) {
+                        jakarta.servlet.http.HttpServletRequest httpRequest =
+                                (jakarta.servlet.http.HttpServletRequest) request;
+                        jakarta.servlet.http.HttpServletResponse httpResponse =
+                                (jakarta.servlet.http.HttpServletResponse) response;
+                        FilterChain.this.doFilter(
+                                HttpServletRequest.fromJakartaHttpServletRequest(httpRequest),
+                                HttpServletResponse.fromJakartaHttpServletResponse(httpResponse));
+                    } else {
+                        FilterChain.this.doFilter(
+                                ServletRequest.fromJakartaServletRequest(request),
+                                ServletResponse.fromJakartaServletResponse(response));
+                    }
+                } catch (ServletException e) {
+                    throw e.toJakartaServletException();
+                }
+            }
+        };
+    }
+
+    static FilterChain fromJakartaFilterChain(jakarta.servlet.FilterChain from) {
+        Objects.requireNonNull(from);
+        return new FilterChain() {
+            @Override
+            public void doFilter(ServletRequest request, ServletResponse response)
+                    throws IOException, ServletException {
+                try {
+                    if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
+                        HttpServletRequest httpRequest = (HttpServletRequest) request;
+                        HttpServletResponse httpResponse = (HttpServletResponse) response;
+                        from.doFilter(
+                                httpRequest.toJakartaHttpServletRequest(), httpResponse.toJakartaHttpServletResponse());
+                    } else {
+                        from.doFilter(request.toJakartaServletRequest(), response.toJakartaServletResponse());
+                    }
+                } catch (jakarta.servlet.ServletException e) {
+                    throw ServletException.fromJakartaServletException(e);
+                }
+            }
+
+            @Override
+            public jakarta.servlet.FilterChain toJakartaFilterChain() {
+                return from;
+            }
+        };
+    }
 }

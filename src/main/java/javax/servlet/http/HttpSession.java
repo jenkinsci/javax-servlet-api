@@ -19,6 +19,7 @@
 package javax.servlet.http;
 
 import java.util.Enumeration;
+import java.util.Objects;
 import javax.servlet.ServletContext;
 
 /**
@@ -270,4 +271,188 @@ public interface HttpSession {
      * @exception IllegalStateException if this method is called on an already invalidated session
      */
     boolean isNew();
+
+    default jakarta.servlet.http.HttpSession toJakartaHttpSession() {
+        return new jakarta.servlet.http.HttpSession() {
+            @Override
+            public long getCreationTime() {
+                return HttpSession.this.getCreationTime();
+            }
+
+            @Override
+            public String getId() {
+                return HttpSession.this.getId();
+            }
+
+            @Override
+            public long getLastAccessedTime() {
+                return HttpSession.this.getLastAccessedTime();
+            }
+
+            @Override
+            public jakarta.servlet.ServletContext getServletContext() {
+                return HttpSession.this.getServletContext().toJakartaServletContext();
+            }
+
+            @Override
+            public void setMaxInactiveInterval(int interval) {
+                HttpSession.this.setMaxInactiveInterval(interval);
+            }
+
+            @Override
+            public int getMaxInactiveInterval() {
+                return HttpSession.this.getMaxInactiveInterval();
+            }
+
+            @Override
+            public jakarta.servlet.http.HttpSessionContext getSessionContext() {
+                return HttpSession.this.getSessionContext().toJakartaHttpSessionContext();
+            }
+
+            @Override
+            public Object getAttribute(String name) {
+                return HttpSession.this.getAttribute(name);
+            }
+
+            @Override
+            public Object getValue(String name) {
+                return HttpSession.this.getValue(name);
+            }
+
+            @Override
+            public Enumeration<String> getAttributeNames() {
+                return HttpSession.this.getAttributeNames();
+            }
+
+            @Override
+            public String[] getValueNames() {
+                return HttpSession.this.getValueNames();
+            }
+
+            @Override
+            public void setAttribute(String name, Object value) {
+                HttpSession.this.setAttribute(name, value);
+            }
+
+            @Override
+            public void putValue(String name, Object value) {
+                HttpSession.this.putValue(name, value);
+            }
+
+            @Override
+            public void removeAttribute(String name) {
+                HttpSession.this.removeAttribute(name);
+            }
+
+            @Override
+            public void removeValue(String name) {
+                HttpSession.this.removeValue(name);
+            }
+
+            @Override
+            public void invalidate() {
+                HttpSession.this.invalidate();
+            }
+
+            @Override
+            public boolean isNew() {
+                return HttpSession.this.isNew();
+            }
+        };
+    }
+
+    static HttpSession fromJakartaHttpSession(jakarta.servlet.http.HttpSession from) {
+        Objects.requireNonNull(from);
+        return new HttpSession() {
+            @Override
+            public long getCreationTime() {
+                return from.getCreationTime();
+            }
+
+            @Override
+            public String getId() {
+                return from.getId();
+            }
+
+            @Override
+            public long getLastAccessedTime() {
+                return from.getLastAccessedTime();
+            }
+
+            @Override
+            public ServletContext getServletContext() {
+                return ServletContext.fromJakartServletContext(from.getServletContext());
+            }
+
+            @Override
+            public void setMaxInactiveInterval(int interval) {
+                from.setMaxInactiveInterval(interval);
+            }
+
+            @Override
+            public int getMaxInactiveInterval() {
+                return from.getMaxInactiveInterval();
+            }
+
+            @Override
+            public HttpSessionContext getSessionContext() {
+                return HttpSessionContext.fromJakartaHttpSessionContext(from.getSessionContext());
+            }
+
+            @Override
+            public Object getAttribute(String name) {
+                return from.getAttribute(name);
+            }
+
+            @Override
+            public Object getValue(String name) {
+                return from.getValue(name);
+            }
+
+            @Override
+            public Enumeration<String> getAttributeNames() {
+                return from.getAttributeNames();
+            }
+
+            @Override
+            public String[] getValueNames() {
+                return from.getValueNames();
+            }
+
+            @Override
+            public void setAttribute(String name, Object value) {
+                from.setAttribute(name, value);
+            }
+
+            @Override
+            public void putValue(String name, Object value) {
+                from.putValue(name, value);
+            }
+
+            @Override
+            public void removeAttribute(String name) {
+                from.removeAttribute(name);
+            }
+
+            @Override
+            public void removeValue(String name) {
+                from.removeValue(name);
+            }
+
+            @Override
+            public void invalidate() {
+                from.invalidate();
+            }
+
+            @Override
+            public boolean isNew() {
+                return from.isNew();
+            }
+
+            @Override
+            public jakarta.servlet.http.HttpSession toJakartaHttpSession() {
+                return from;
+            }
+        };
+    }
 }

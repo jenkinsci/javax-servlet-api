@@ -19,6 +19,7 @@
 package javax.servlet.http;
 
 import java.util.Enumeration;
+import java.util.Objects;
 
 /**
  *
@@ -56,4 +57,38 @@ public interface HttpSessionContext {
      */
     @Deprecated
     Enumeration<String> getIds();
+
+    default jakarta.servlet.http.HttpSessionContext toJakartaHttpSessionContext() {
+        return new jakarta.servlet.http.HttpSessionContext() {
+            @Override
+            public jakarta.servlet.http.HttpSession getSession(String sessionId) {
+                return HttpSessionContext.this.getSession(sessionId).toJakartaHttpSession();
+            }
+
+            @Override
+            public Enumeration<String> getIds() {
+                return HttpSessionContext.this.getIds();
+            }
+        };
+    }
+
+    static HttpSessionContext fromJakartaHttpSessionContext(jakarta.servlet.http.HttpSessionContext from) {
+        Objects.requireNonNull(from);
+        return new HttpSessionContext() {
+            @Override
+            public HttpSession getSession(String sessionId) {
+                return HttpSession.fromJakartaHttpSession(from.getSession(sessionId));
+            }
+
+            @Override
+            public Enumeration<String> getIds() {
+                return from.getIds();
+            }
+
+            @Override
+            public jakarta.servlet.http.HttpSessionContext toJakartaHttpSessionContext() {
+                return from;
+            }
+        };
+    }
 }

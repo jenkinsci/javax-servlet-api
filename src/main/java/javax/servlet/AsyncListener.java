@@ -19,6 +19,7 @@ package javax.servlet;
 
 import java.io.IOException;
 import java.util.EventListener;
+import java.util.Objects;
 
 /**
  * Listener that will be notified in the event that an asynchronous operation initiated on a ServletRequest to which the
@@ -109,4 +110,60 @@ public interface AsyncListener extends EventListener {
      * @throws IOException if an I/O related error has occurred during the processing of the given AsyncEvent
      */
     void onStartAsync(AsyncEvent event) throws IOException;
+
+    default jakarta.servlet.AsyncListener toJakartaAsyncListener() {
+        return new jakarta.servlet.AsyncListener() {
+
+            @Override
+            public void onComplete(jakarta.servlet.AsyncEvent event) throws IOException {
+                AsyncListener.this.onComplete(AsyncEvent.fromJakartaServletHttpAsyncEvent(event));
+            }
+
+            @Override
+            public void onTimeout(jakarta.servlet.AsyncEvent event) throws IOException {
+                AsyncListener.this.onTimeout(AsyncEvent.fromJakartaServletHttpAsyncEvent(event));
+            }
+
+            @Override
+            public void onError(jakarta.servlet.AsyncEvent event) throws IOException {
+                AsyncListener.this.onError(AsyncEvent.fromJakartaServletHttpAsyncEvent(event));
+            }
+
+            @Override
+            public void onStartAsync(jakarta.servlet.AsyncEvent event) throws IOException {
+                AsyncListener.this.onStartAsync(AsyncEvent.fromJakartaServletHttpAsyncEvent(event));
+            }
+        };
+    }
+
+    static AsyncListener fromJakartaAsyncListener(jakarta.servlet.AsyncListener from) {
+        Objects.requireNonNull(from);
+        return new AsyncListener() {
+
+            @Override
+            public void onComplete(AsyncEvent event) throws IOException {
+                from.onComplete(AsyncEvent.toJakartaServletHttpAsyncEvent(event));
+            }
+
+            @Override
+            public void onTimeout(AsyncEvent event) throws IOException {
+                from.onTimeout(AsyncEvent.toJakartaServletHttpAsyncEvent(event));
+            }
+
+            @Override
+            public void onError(AsyncEvent event) throws IOException {
+                from.onError(AsyncEvent.toJakartaServletHttpAsyncEvent(event));
+            }
+
+            @Override
+            public void onStartAsync(AsyncEvent event) throws IOException {
+                from.onStartAsync(AsyncEvent.toJakartaServletHttpAsyncEvent(event));
+            }
+
+            @Override
+            public jakarta.servlet.AsyncListener toJakartaAsyncListener() {
+                return from;
+            }
+        };
+    }
 }

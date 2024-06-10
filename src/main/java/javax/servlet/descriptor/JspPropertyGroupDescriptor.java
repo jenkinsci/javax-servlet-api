@@ -18,6 +18,7 @@
 package javax.servlet.descriptor;
 
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * This interface provides access to the <code>&lt;jsp-property-group&gt;</code> related configuration of a web
@@ -144,4 +145,139 @@ public interface JspPropertyGroupDescriptor {
      * @return the value of the <code>error-on-undeclared-namespace</code> configuration, or null if unspecified
      */
     String getErrorOnUndeclaredNamespace();
+
+    default jakarta.servlet.descriptor.JspPropertyGroupDescriptor toJakartaJspPropertyGroupDescriptor() {
+        return new jakarta.servlet.descriptor.JspPropertyGroupDescriptor() {
+            @Override
+            public Collection<String> getUrlPatterns() {
+                return JspPropertyGroupDescriptor.this.getUrlPatterns();
+            }
+
+            @Override
+            public String getElIgnored() {
+                return JspPropertyGroupDescriptor.this.getElIgnored();
+            }
+
+            @Override
+            public String getPageEncoding() {
+                return JspPropertyGroupDescriptor.this.getPageEncoding();
+            }
+
+            @Override
+            public String getScriptingInvalid() {
+                return JspPropertyGroupDescriptor.this.getScriptingInvalid();
+            }
+
+            @Override
+            public String getIsXml() {
+                return JspPropertyGroupDescriptor.this.getIsXml();
+            }
+
+            @Override
+            public Collection<String> getIncludePreludes() {
+                return JspPropertyGroupDescriptor.this.getIncludePreludes();
+            }
+
+            @Override
+            public Collection<String> getIncludeCodas() {
+                return JspPropertyGroupDescriptor.this.getIncludeCodas();
+            }
+
+            @Override
+            public String getDeferredSyntaxAllowedAsLiteral() {
+                return JspPropertyGroupDescriptor.this.getDeferredSyntaxAllowedAsLiteral();
+            }
+
+            @Override
+            public String getTrimDirectiveWhitespaces() {
+                return JspPropertyGroupDescriptor.this.getTrimDirectiveWhitespaces();
+            }
+
+            @Override
+            public String getDefaultContentType() {
+                return JspPropertyGroupDescriptor.this.getDefaultContentType();
+            }
+
+            @Override
+            public String getBuffer() {
+                return JspPropertyGroupDescriptor.this.getBuffer();
+            }
+
+            @Override
+            public String getErrorOnUndeclaredNamespace() {
+                return JspPropertyGroupDescriptor.this.getErrorOnUndeclaredNamespace();
+            }
+        };
+    }
+
+    static JspPropertyGroupDescriptor fromJakartaJspPropertyGroupDescriptor(
+            jakarta.servlet.descriptor.JspPropertyGroupDescriptor from) {
+        Objects.requireNonNull(from);
+        return new JspPropertyGroupDescriptor() {
+            @Override
+            public Collection<String> getUrlPatterns() {
+                return from.getUrlPatterns();
+            }
+
+            @Override
+            public String getElIgnored() {
+                return from.getElIgnored();
+            }
+
+            @Override
+            public String getPageEncoding() {
+                return from.getPageEncoding();
+            }
+
+            @Override
+            public String getScriptingInvalid() {
+                return from.getScriptingInvalid();
+            }
+
+            @Override
+            public String getIsXml() {
+                return from.getIsXml();
+            }
+
+            @Override
+            public Collection<String> getIncludePreludes() {
+                return from.getIncludePreludes();
+            }
+
+            @Override
+            public Collection<String> getIncludeCodas() {
+                return from.getIncludeCodas();
+            }
+
+            @Override
+            public String getDeferredSyntaxAllowedAsLiteral() {
+                return from.getDeferredSyntaxAllowedAsLiteral();
+            }
+
+            @Override
+            public String getTrimDirectiveWhitespaces() {
+                return from.getTrimDirectiveWhitespaces();
+            }
+
+            @Override
+            public String getDefaultContentType() {
+                return from.getDefaultContentType();
+            }
+
+            @Override
+            public String getBuffer() {
+                return from.getBuffer();
+            }
+
+            @Override
+            public String getErrorOnUndeclaredNamespace() {
+                return from.getErrorOnUndeclaredNamespace();
+            }
+
+            @Override
+            public jakarta.servlet.descriptor.JspPropertyGroupDescriptor toJakartaJspPropertyGroupDescriptor() {
+                return from;
+            }
+        };
+    }
 }

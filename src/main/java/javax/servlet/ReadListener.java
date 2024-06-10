@@ -19,6 +19,7 @@ package javax.servlet;
 
 import java.io.IOException;
 import java.util.EventListener;
+import java.util.Objects;
 
 /**
  * <p>
@@ -53,4 +54,48 @@ public interface ReadListener extends EventListener {
      * @param t the throwable to indicate why the read operation failed
      */
     void onError(Throwable t);
+
+    default jakarta.servlet.ReadListener toJakartaReadListener() {
+        return new jakarta.servlet.ReadListener() {
+            @Override
+            public void onDataAvailable() throws IOException {
+                ReadListener.this.onDataAvailable();
+            }
+
+            @Override
+            public void onAllDataRead() throws IOException {
+                ReadListener.this.onAllDataRead();
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                ReadListener.this.onError(throwable);
+            }
+        };
+    }
+
+    static ReadListener fromJakartaReadListener(jakarta.servlet.ReadListener from) {
+        Objects.requireNonNull(from);
+        return new ReadListener() {
+            @Override
+            public void onDataAvailable() throws IOException {
+                from.onDataAvailable();
+            }
+
+            @Override
+            public void onAllDataRead() throws IOException {
+                from.onAllDataRead();
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                from.onError(t);
+            }
+
+            @Override
+            public jakarta.servlet.ReadListener toJakartaReadListener() {
+                return from;
+            }
+        };
+    }
 }

@@ -19,6 +19,7 @@
 package javax.servlet;
 
 import java.util.Enumeration;
+import java.util.Objects;
 
 /**
  * A filter configuration object used by a servlet container to pass information to a filter during initialization.
@@ -63,4 +64,58 @@ public interface FilterConfig {
      *         initialization parameters
      */
     Enumeration<String> getInitParameterNames();
+
+    default jakarta.servlet.FilterConfig toJakartaFilterConfig() {
+        return new jakarta.servlet.FilterConfig() {
+            @Override
+            public String getFilterName() {
+                return FilterConfig.this.getFilterName();
+            }
+
+            @Override
+            public jakarta.servlet.ServletContext getServletContext() {
+                return FilterConfig.this.getServletContext().toJakartaServletContext();
+            }
+
+            @Override
+            public String getInitParameter(String name) {
+                return FilterConfig.this.getInitParameter(name);
+            }
+
+            @Override
+            public Enumeration<String> getInitParameterNames() {
+                return FilterConfig.this.getInitParameterNames();
+            }
+        };
+    }
+
+    static FilterConfig fromJakartaFilterConfig(jakarta.servlet.FilterConfig from) {
+        Objects.requireNonNull(from);
+        return new FilterConfig() {
+            @Override
+            public String getFilterName() {
+                return from.getFilterName();
+            }
+
+            @Override
+            public ServletContext getServletContext() {
+                return ServletContext.fromJakartServletContext(from.getServletContext());
+            }
+
+            @Override
+            public String getInitParameter(String name) {
+                return from.getInitParameter(name);
+            }
+
+            @Override
+            public Enumeration<String> getInitParameterNames() {
+                return from.getInitParameterNames();
+            }
+
+            @Override
+            public jakarta.servlet.FilterConfig toJakartaFilterConfig() {
+                return from;
+            }
+        };
+    }
 }
