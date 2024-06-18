@@ -18,6 +18,8 @@
 package javax.servlet.descriptor;
 
 import java.util.Collection;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * This interface provides access to the <code>&lt;jsp-config&gt;</code> related configuration of a web application.
@@ -53,4 +55,46 @@ public interface JspConfigDescriptor {
      *         of the <code>&lt;jsp-config&gt;</code> element represented by this <code>JspConfigDescriptor</code>
      */
     Collection<JspPropertyGroupDescriptor> getJspPropertyGroups();
+
+    default jakarta.servlet.descriptor.JspConfigDescriptor toJakartaJspConfigDescriptor() {
+        return new jakarta.servlet.descriptor.JspConfigDescriptor() {
+            @Override
+            public Collection<jakarta.servlet.descriptor.TaglibDescriptor> getTaglibs() {
+                return JspConfigDescriptor.this.getTaglibs().stream()
+                        .map(TaglibDescriptor::toJakartaTaglibDescriptor)
+                        .collect(Collectors.toList());
+            }
+
+            @Override
+            public Collection<jakarta.servlet.descriptor.JspPropertyGroupDescriptor> getJspPropertyGroups() {
+                return JspConfigDescriptor.this.getJspPropertyGroups().stream()
+                        .map(JspPropertyGroupDescriptor::toJakartaJspPropertyGroupDescriptor)
+                        .collect(Collectors.toList());
+            }
+        };
+    }
+
+    static JspConfigDescriptor fromJakartaJspConfigDescriptor(jakarta.servlet.descriptor.JspConfigDescriptor from) {
+        Objects.requireNonNull(from);
+        return new JspConfigDescriptor() {
+            @Override
+            public Collection<TaglibDescriptor> getTaglibs() {
+                return from.getTaglibs().stream()
+                        .map(TaglibDescriptor::fromJakartaTaglibDescriptor)
+                        .collect(Collectors.toList());
+            }
+
+            @Override
+            public Collection<JspPropertyGroupDescriptor> getJspPropertyGroups() {
+                return from.getJspPropertyGroups().stream()
+                        .map(JspPropertyGroupDescriptor::fromJakartaJspPropertyGroupDescriptor)
+                        .collect(Collectors.toList());
+            }
+
+            @Override
+            public jakarta.servlet.descriptor.JspConfigDescriptor toJakartaJspConfigDescriptor() {
+                return from;
+            }
+        };
+    }
 }

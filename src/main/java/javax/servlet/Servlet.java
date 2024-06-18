@@ -19,6 +19,9 @@
 package javax.servlet;
 
 import java.io.IOException;
+import java.util.Objects;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Defines methods that all servlets must implement.
@@ -147,4 +150,105 @@ public interface Servlet {
      *
      */
     void destroy();
+
+    default jakarta.servlet.Servlet toJakartaServlet() {
+        return new jakarta.servlet.Servlet() {
+            @Override
+            public void init(jakarta.servlet.ServletConfig config) throws jakarta.servlet.ServletException {
+                try {
+                    Servlet.this.init(ServletConfig.fromJakartaServletConfig(config));
+                } catch (ServletException e) {
+                    throw e.toJakartaServletException();
+                }
+            }
+
+            @Override
+            public jakarta.servlet.ServletConfig getServletConfig() {
+                return Servlet.this.getServletConfig().toJakartaServletConfig();
+            }
+
+            @Override
+            public void service(jakarta.servlet.ServletRequest request, jakarta.servlet.ServletResponse response)
+                    throws jakarta.servlet.ServletException, IOException {
+                try {
+                    if (request instanceof jakarta.servlet.http.HttpServletRequest
+                            && response instanceof jakarta.servlet.http.HttpServletResponse) {
+                        jakarta.servlet.http.HttpServletRequest httpRequest =
+                                (jakarta.servlet.http.HttpServletRequest) request;
+                        jakarta.servlet.http.HttpServletResponse httpResponse =
+                                (jakarta.servlet.http.HttpServletResponse) response;
+                        Servlet.this.service(
+                                HttpServletRequest.fromJakartaHttpServletRequest(httpRequest),
+                                HttpServletResponse.fromJakartaHttpServletResponse(httpResponse));
+                    } else {
+                        Servlet.this.service(
+                                ServletRequest.fromJakartaServletRequest(request),
+                                ServletResponse.fromJakartaServletResponse(response));
+                    }
+                } catch (ServletException e) {
+                    throw e.toJakartaServletException();
+                }
+            }
+
+            @Override
+            public String getServletInfo() {
+                return Servlet.this.getServletInfo();
+            }
+
+            @Override
+            public void destroy() {
+                Servlet.this.destroy();
+            }
+        };
+    }
+
+    static Servlet fromJakartaServlet(jakarta.servlet.Servlet from) {
+        Objects.requireNonNull(from);
+        return new Servlet() {
+            @Override
+            public void init(ServletConfig config) throws ServletException {
+                try {
+                    from.init(config.toJakartaServletConfig());
+                } catch (jakarta.servlet.ServletException e) {
+                    throw ServletException.fromJakartaServletException(e);
+                }
+            }
+
+            @Override
+            public ServletConfig getServletConfig() {
+                return ServletConfig.fromJakartaServletConfig(from.getServletConfig());
+            }
+
+            @Override
+            public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+                try {
+                    if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
+                        HttpServletRequest httpRequest = (HttpServletRequest) request;
+                        HttpServletResponse httpResponse = (HttpServletResponse) response;
+                        from.service(
+                                httpRequest.toJakartaHttpServletRequest(), httpResponse.toJakartaHttpServletResponse());
+                    } else {
+                        from.service(request.toJakartaServletRequest(), response.toJakartaServletResponse());
+                    }
+                } catch (jakarta.servlet.ServletException e) {
+                    throw ServletException.fromJakartaServletException(e);
+                }
+            }
+
+            @Override
+            public String getServletInfo() {
+                return from.getServletInfo();
+            }
+
+            @Override
+            public void destroy() {
+                from.destroy();
+            }
+
+            @Override
+            public jakarta.servlet.Servlet toJakartaServlet() {
+                return from;
+            }
+        };
+    }
 }
