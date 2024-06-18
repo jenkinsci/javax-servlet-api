@@ -31,7 +31,7 @@
   <properties>
     <revision>4.0.7</revision>
     <changelist>-SNAPSHOT</changelist>
-    <gitHubRepo>jenkinsci/jenkins-servlet-api</gitHubRepo>
+    <gitHubRepo>jenkinsci/javax-servlet-api</gitHubRepo>
     <!-- TODO fix violations -->
     <spotbugs.skip>true</spotbugs.skip>
     <spotless.check.skip>false</spotless.check.skip>
