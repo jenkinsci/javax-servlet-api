@@ -19,7 +19,6 @@
 package javax.servlet;
 
 import java.util.Enumeration;
-import java.util.Objects;
 
 /**
  * A servlet configuration object used by a servlet container to pass information to a servlet during initialization.
@@ -63,58 +62,4 @@ public interface ServletConfig {
      *         initialization parameters
      */
     Enumeration<String> getInitParameterNames();
-
-    default jakarta.servlet.ServletConfig toJakartaServletConfig() {
-        return new jakarta.servlet.ServletConfig() {
-            @Override
-            public String getServletName() {
-                return ServletConfig.this.getServletName();
-            }
-
-            @Override
-            public jakarta.servlet.ServletContext getServletContext() {
-                return ServletConfig.this.getServletContext().toJakartaServletContext();
-            }
-
-            @Override
-            public String getInitParameter(String name) {
-                return ServletConfig.this.getInitParameter(name);
-            }
-
-            @Override
-            public Enumeration<String> getInitParameterNames() {
-                return ServletConfig.this.getInitParameterNames();
-            }
-        };
-    }
-
-    static ServletConfig fromJakartaServletConfig(jakarta.servlet.ServletConfig from) {
-        Objects.requireNonNull(from);
-        return new ServletConfig() {
-            @Override
-            public String getServletName() {
-                return from.getServletName();
-            }
-
-            @Override
-            public ServletContext getServletContext() {
-                return ServletContext.fromJakartServletContext(from.getServletContext());
-            }
-
-            @Override
-            public String getInitParameter(String name) {
-                return from.getInitParameter(name);
-            }
-
-            @Override
-            public Enumeration<String> getInitParameterNames() {
-                return from.getInitParameterNames();
-            }
-
-            @Override
-            public jakarta.servlet.ServletConfig toJakartaServletConfig() {
-                return from;
-            }
-        };
-    }
 }

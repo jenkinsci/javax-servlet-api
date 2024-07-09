@@ -93,12 +93,4 @@ public class ServletException extends Exception {
     public Throwable getRootCause() {
         return rootCause;
     }
-
-    public jakarta.servlet.ServletException toJakartaServletException() {
-        return new jakarta.servlet.ServletException(toString(), this);
-    }
-
-    public static ServletException fromJakartaServletException(jakarta.servlet.ServletException e) {
-        return new ServletException(e.toString(), e);
-    }
 }

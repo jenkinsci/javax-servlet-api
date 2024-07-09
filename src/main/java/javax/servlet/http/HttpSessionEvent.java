@@ -44,12 +44,4 @@ public class HttpSessionEvent extends java.util.EventObject {
     public HttpSession getSession() {
         return (HttpSession) super.getSource();
     }
-
-    public jakarta.servlet.http.HttpSessionEvent toJakartaHttpSessionEvent() {
-        return new jakarta.servlet.http.HttpSessionEvent(getSession().toJakartaHttpSession());
-    }
-
-    public static HttpSessionEvent fromJakartaHttpSessionEvent(jakarta.servlet.http.HttpSessionEvent e) {
-        return new HttpSessionEvent(HttpSession.fromJakartaHttpSession(e.getSession()));
-    }
 }
