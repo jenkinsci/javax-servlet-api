@@ -10,7 +10,7 @@
 
   <groupId>io.jenkins.servlet</groupId>
   <artifactId>javax-servlet-api</artifactId>
-  <version>${revision}${changelist}</version>
+  <version>4.0.9</version>
   <packaging>jar</packaging>
   <name>Servlet API and Schemas for EE 8</name>
 
@@ -24,7 +24,7 @@
   <scm>
     <connection>scm:git:https://github.com/${gitHubRepo}.git</connection>
     <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
-    <tag>${scmTag}</tag>
+    <tag>javax-servlet-api-4.0.9</tag>
     <url>https://github.com/${gitHubRepo}</url>
   </scm>
 
