@@ -19,7 +19,6 @@ package javax.servlet;
 
 import java.io.IOException;
 import java.util.EventListener;
-import java.util.Objects;
 
 /**
  *
@@ -45,38 +44,4 @@ public interface WriteListener extends EventListener {
      * @param t the throwable to indicate why the write operation failed
      */
     void onError(final Throwable t);
-
-    default jakarta.servlet.WriteListener toJakartaWriteListener() {
-        return new jakarta.servlet.WriteListener() {
-            @Override
-            public void onWritePossible() throws IOException {
-                WriteListener.this.onWritePossible();
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                WriteListener.this.onError(t);
-            }
-        };
-    }
-
-    static WriteListener fromJakartaWriteListener(jakarta.servlet.WriteListener from) {
-        Objects.requireNonNull(from);
-        return new WriteListener() {
-            @Override
-            public void onWritePossible() throws IOException {
-                from.onWritePossible();
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                from.onError(t);
-            }
-
-            @Override
-            public jakarta.servlet.WriteListener toJakartaWriteListener() {
-                return from;
-            }
-        };
-    }
 }

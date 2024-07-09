@@ -17,8 +17,6 @@
 
 package javax.servlet.http;
 
-import java.util.Objects;
-
 /**
  * <p>
  * Allows runtime discovery of the manner in which the {@link HttpServlet} for the current {@link HttpServletRequest}
@@ -151,58 +149,4 @@ public interface HttpServletMapping {
      * @since 4.0
      */
     MappingMatch getMappingMatch();
-
-    default jakarta.servlet.http.HttpServletMapping toJakartaHttpServletMapping() {
-        return new jakarta.servlet.http.HttpServletMapping() {
-            @Override
-            public String getMatchValue() {
-                return HttpServletMapping.this.getMatchValue();
-            }
-
-            @Override
-            public String getPattern() {
-                return HttpServletMapping.this.getPattern();
-            }
-
-            @Override
-            public String getServletName() {
-                return HttpServletMapping.this.getServletName();
-            }
-
-            @Override
-            public jakarta.servlet.http.MappingMatch getMappingMatch() {
-                return MappingMatch.toJakartaMappingMatch(HttpServletMapping.this.getMappingMatch());
-            }
-        };
-    }
-
-    static HttpServletMapping fromJakartaHttpServletMapping(jakarta.servlet.http.HttpServletMapping from) {
-        Objects.requireNonNull(from);
-        return new HttpServletMapping() {
-            @Override
-            public String getMatchValue() {
-                return from.getMatchValue();
-            }
-
-            @Override
-            public String getPattern() {
-                return from.getPattern();
-            }
-
-            @Override
-            public String getServletName() {
-                return from.getServletName();
-            }
-
-            @Override
-            public MappingMatch getMappingMatch() {
-                return MappingMatch.fromJakartaMappingMatch(from.getMappingMatch());
-            }
-
-            @Override
-            public jakarta.servlet.http.HttpServletMapping toJakartaHttpServletMapping() {
-                return from;
-            }
-        };
-    }
 }

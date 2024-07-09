@@ -18,8 +18,6 @@
 
 package javax.servlet;
 
-import java.util.Objects;
-
 /**
  * This is the event class for notifications about changes to the servlet context of a web application.
  *
@@ -47,14 +45,5 @@ public class ServletContextEvent extends java.util.EventObject {
      */
     public ServletContext getServletContext() {
         return (ServletContext) super.getSource();
-    }
-
-    public jakarta.servlet.ServletContextEvent toJakartaServletContextEvent() {
-        return new jakarta.servlet.ServletContextEvent(getServletContext().toJakartaServletContext());
-    }
-
-    public static ServletContextEvent fromJakartaServletContextEvent(jakarta.servlet.ServletContextEvent from) {
-        Objects.requireNonNull(from);
-        return new ServletContextEvent(ServletContext.fromJakartServletContext(from.getServletContext()));
     }
 }

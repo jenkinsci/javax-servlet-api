@@ -17,8 +17,6 @@
 
 package javax.servlet;
 
-import java.util.Objects;
-
 /**
  * Event that gets fired when the asynchronous operation initiated on a ServletRequest (via a call to
  * {@link ServletRequest#startAsync} or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}) has
@@ -127,23 +125,5 @@ public class AsyncEvent {
      */
     public Throwable getThrowable() {
         return throwable;
-    }
-
-    public static jakarta.servlet.AsyncEvent toJakartaServletHttpAsyncEvent(AsyncEvent from) {
-        Objects.requireNonNull(from);
-        return new jakarta.servlet.AsyncEvent(
-                from.getAsyncContext().toJakartaAsyncContext(),
-                from.getSuppliedRequest().toJakartaServletRequest(),
-                from.getSuppliedResponse().toJakartaServletResponse(),
-                from.getThrowable());
-    }
-
-    public static AsyncEvent fromJakartaServletHttpAsyncEvent(jakarta.servlet.AsyncEvent from) {
-        Objects.requireNonNull(from);
-        return new AsyncEvent(
-                AsyncContext.fromJakartaAsyncContext(from.getAsyncContext()),
-                ServletRequest.fromJakartaServletRequest(from.getSuppliedRequest()),
-                ServletResponse.fromJakartaServletResponse(from.getSuppliedResponse()),
-                from.getThrowable());
     }
 }

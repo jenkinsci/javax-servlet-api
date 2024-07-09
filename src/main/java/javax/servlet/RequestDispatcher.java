@@ -19,9 +19,6 @@
 package javax.servlet;
 
 import java.io.IOException;
-import java.util.Objects;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Defines an object that receives requests from the client and sends them to any resource (such as a servlet, HTML
@@ -213,96 +210,4 @@ public interface RequestDispatcher {
      * @see ServletRequest#getDispatcherType
      */
     void include(ServletRequest request, ServletResponse response) throws ServletException, IOException;
-
-    default jakarta.servlet.RequestDispatcher toJakartaRequestDispatcher() {
-        return new jakarta.servlet.RequestDispatcher() {
-            @Override
-            public void forward(jakarta.servlet.ServletRequest request, jakarta.servlet.ServletResponse response)
-                    throws jakarta.servlet.ServletException, IOException {
-                try {
-                    if (request instanceof jakarta.servlet.http.HttpServletRequest
-                            && response instanceof jakarta.servlet.http.HttpServletResponse) {
-                        jakarta.servlet.http.HttpServletRequest httpRequest =
-                                (jakarta.servlet.http.HttpServletRequest) request;
-                        jakarta.servlet.http.HttpServletResponse httpResponse =
-                                (jakarta.servlet.http.HttpServletResponse) response;
-                        RequestDispatcher.this.forward(
-                                HttpServletRequest.fromJakartaHttpServletRequest(httpRequest),
-                                HttpServletResponse.fromJakartaHttpServletResponse(httpResponse));
-                    } else {
-                        RequestDispatcher.this.forward(
-                                ServletRequest.fromJakartaServletRequest(request),
-                                ServletResponse.fromJakartaServletResponse(response));
-                    }
-                } catch (ServletException e) {
-                    throw e.toJakartaServletException();
-                }
-            }
-
-            @Override
-            public void include(jakarta.servlet.ServletRequest request, jakarta.servlet.ServletResponse response)
-                    throws jakarta.servlet.ServletException, IOException {
-                try {
-                    if (request instanceof jakarta.servlet.http.HttpServletRequest
-                            && response instanceof jakarta.servlet.http.HttpServletResponse) {
-                        jakarta.servlet.http.HttpServletRequest httpRequest =
-                                (jakarta.servlet.http.HttpServletRequest) request;
-                        jakarta.servlet.http.HttpServletResponse httpResponse =
-                                (jakarta.servlet.http.HttpServletResponse) response;
-                        RequestDispatcher.this.include(
-                                HttpServletRequest.fromJakartaHttpServletRequest(httpRequest),
-                                HttpServletResponse.fromJakartaHttpServletResponse(httpResponse));
-                    } else {
-                        RequestDispatcher.this.include(
-                                ServletRequest.fromJakartaServletRequest(request),
-                                ServletResponse.fromJakartaServletResponse(response));
-                    }
-                } catch (ServletException e) {
-                    throw e.toJakartaServletException();
-                }
-            }
-        };
-    }
-
-    static RequestDispatcher fromJakartaRequestDispatcher(jakarta.servlet.RequestDispatcher from) {
-        Objects.requireNonNull(from);
-        return new RequestDispatcher() {
-            @Override
-            public void forward(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-                try {
-                    if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
-                        HttpServletRequest httpRequest = (HttpServletRequest) request;
-                        HttpServletResponse httpResponse = (HttpServletResponse) response;
-                        from.forward(
-                                httpRequest.toJakartaHttpServletRequest(), httpResponse.toJakartaHttpServletResponse());
-                    } else {
-                        from.forward(request.toJakartaServletRequest(), response.toJakartaServletResponse());
-                    }
-                } catch (jakarta.servlet.ServletException e) {
-                    throw ServletException.fromJakartaServletException(e);
-                }
-            }
-
-            @Override
-            public void include(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-                try {
-                    if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
-                        HttpServletRequest httpRequest = (HttpServletRequest) request;
-                        HttpServletResponse httpResponse = (HttpServletResponse) response;
-                        from.include(
-                                httpRequest.toJakartaHttpServletRequest(), httpResponse.toJakartaHttpServletResponse());
-                    } else {
-                        from.include(request.toJakartaServletRequest(), response.toJakartaServletResponse());
-                    }
-                } catch (jakarta.servlet.ServletException e) {
-                    throw ServletException.fromJakartaServletException(e);
-                }
-            }
-
-            @Override
-            public jakarta.servlet.RequestDispatcher toJakartaRequestDispatcher() {
-                return from;
-            }
-        };
-    }
 }
